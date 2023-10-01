@@ -101,11 +101,10 @@
             timeline: [association],
             timeline_variables: association_cues, 
             randomize_order: true, 
-            repetitions: 1
+            repetitions: 3
         };
         var training_plus_association =  {
             timeline: [training_procedure, association_instructions, association_procedure],
-            repetitions: 3
         }
 
         var image = {
@@ -113,9 +112,9 @@
             stimulus: jsPsych.timelineVariable('image_path'),
             choices: "NO_KEYS",
             trial_duration: 500,
-            stimulus_width: 500,
+            stimulus_height: 500,
             maintain_aspect_ratio: true,
-            prompt: "<span style = 'font-size:170%'><br><br></span"
+            prompt: "<span style = 'font-size:200%'><br><br></span"
         }
 
         var prime = {
@@ -123,7 +122,7 @@
             stimulus: jsPsych.timelineVariable('image_path'),
             trial_duration: 300,
             choices: "NO_KEYS",
-            stimulus_width: 500,
+            stimulus_height: 500,
             maintain_aspect_ratio: true,
             prompt: function() {
                return "<span style= 'font-size:200%'><br>" + String(jsPsych.timelineVariable('prime_word')) + "<br><span>";
@@ -133,7 +132,7 @@
             type:jsPsychImageKeyboardResponse,
            stimulus: jsPsych.timelineVariable('image_path'),
             choices: ["A", "L"],
-            stimulus_width: 500,
+            stimulus_height: 500,
             maintain_aspect_ratio:true,
             prompt: function() {
                 return "<span style= 'font-size:200%'><br>" + String(jsPsych.timelineVariable('target_word')) + "<br><span>";
