@@ -106,7 +106,7 @@
 
         var image = {
             type: jsPsychImageKeyboardResponse,
-            //stimulus: jsPsych.timelineVariable('image_path'),
+            stimulus: jsPsych.timelineVariable('image_path'),
             choices: "NO_KEYS",
             trial_duration: 500,
             stimulus_width: 500,
@@ -122,12 +122,12 @@
             stimulus_width: 500,
             maintain_aspect_ratio: true,
             prompt: function() {
-            //    return "<span style= 'font-size:200%'><br>" + String(jsPsych.timelineVariable('prime_word')) + "<br><span>";
+               return "<span style= 'font-size:200%'><br>" + String(jsPsych.timelineVariable('prime_word')) + "<br><span>";
             },
         }
         var target = {
             type:jsPsychImageKeyboardResponse,
-           // stimulus: jsPsych.timelineVariable('image_path'),
+           stimulus: jsPsych.timelineVariable('image_path'),
             choices: ["A", "L"],
             stimulus_width: 500,
             maintain_aspect_ratio:true,
@@ -149,7 +149,7 @@
             }
         var priming_proc = {
             timeline: [fixation, image, prime, target,priming_feedback],
-            //timeline_variables: practice_stimuli,
+            timeline_variables: practice_stimuli,
             randomize_order: true
         }
         jsPsych.run([inital_instructions, training_plus_association,priming_instructions,priming_proc])
