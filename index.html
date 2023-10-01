@@ -56,7 +56,7 @@
 
         var sentence = {
          type: jsPsychHtmlKeyboardResponse,
-         //stimulus: jsPsych.timelineVariable('sentence'),
+         stimulus: jsPsych.timelineVariable('sentence'),
          choices: [" "],
          trial_duration: 100,
          on_finish: function(data) {
@@ -83,21 +83,21 @@
         }
         var training_procedure = {
             timeline: [sentence, attention_conditional],
-            //timeline_variables: sentences, 
+            timeline_variables: sentences, 
             randomize_order: true 
         };
         var association = {
             type: jsPsychSurveyText,
             preamble:  "Respond with the first word comes to mind",
-            //questions: [{prompt:jsPsych.timelineVariable("cue")}],
+            questions: [{prompt:jsPsych.timelineVariable("cue")}],
             trial_duration: 10
         };
 
         var association_procedure = {
             timeline: [association],
-            //timeline_variables: association_cues, 
+            timeline_variables: association_cues, 
             randomize_order: true, 
-            repetitions: 3
+            repetitions: 1
         };
         var training_plus_association =  {
             timeline: [training_procedure, association_instructions, association_procedure],
