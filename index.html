@@ -26,10 +26,26 @@
             show_clickable_nav: true 
         }
 
+        var training_instructions = {
+            type: jsPsychInstructions, 
+            pages: [
+                'You have completed the first block of training sentences. Click to start the next block.'
+            ],
+            show_clickable_nav: true 
+        }
+
+        var assoc_training_instructions = {
+            type: jsPsychInstructions, 
+            pages: [
+                'You have completed the associations. Click to start the next block of sentences.'
+            ],
+            show_clickable_nav: true 
+        }
+
         var association_instructions = {
             type: jsPsychInstructions, 
             pages: [
-                'Done with sentences. Association time. Respond to the displayed word with the first word that comes to mind.',
+                'Association time. Respond to the displayed word with the first word that comes to mind.',
             ],
             show_clickable_nav: true 
         }
@@ -89,10 +105,11 @@
             timeline: [sentence, attention_conditional],
             timeline_variables: sentences, 
             randomize_order: true 
+            
         };
         var association = {
             type: jsPsychSurveyText,
-            preamble:  "Respond with the first word comes to mind",
+            //preamble:  "Respond with the first word comes to mind",
             questions: [{prompt:jsPsych.timelineVariable("cue")}],
             trial_duration: 10
         };
@@ -104,7 +121,9 @@
             repetitions: 3
         };
         var training_plus_association =  {
-            timeline: [training_procedure, association_instructions, association_procedure],
+            timeline: [training_procedure, training_instructions, training_procedure, 
+            association_instructions, association_procedure, assoc_training_instructions,
+            training_procedure],
         }
 
         var image = {
