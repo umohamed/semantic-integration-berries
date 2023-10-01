@@ -62,6 +62,7 @@
          type: jsPsychHtmlKeyboardResponse,
          stimulus: jsPsych.timelineVariable('sentence'),
          choices: [" "],
+         //kept for testing, will remove for final experiment
          trial_duration: 100,
          on_finish: function(data) {
             sentence_number = (sentence_number + 1) % 40;
@@ -112,7 +113,7 @@
             stimulus: jsPsych.timelineVariable('image_path'),
             choices: "NO_KEYS",
             trial_duration: 500,
-            stimulus_height: 500,
+            stimulus_width: 500,
             maintain_aspect_ratio: true,
             prompt: "<span style = 'font-size:200%'><br><br></span"
         }
@@ -122,7 +123,7 @@
             stimulus: jsPsych.timelineVariable('image_path'),
             trial_duration: 300,
             choices: "NO_KEYS",
-            stimulus_height: 500,
+            stimulus_width: 500,
             maintain_aspect_ratio: true,
             prompt: function() {
                return "<span style= 'font-size:200%'><br>" + String(jsPsych.timelineVariable('prime_word')) + "<br><span>";
@@ -132,7 +133,7 @@
             type:jsPsychImageKeyboardResponse,
            stimulus: jsPsych.timelineVariable('image_path'),
             choices: ["A", "L"],
-            stimulus_height: 500,
+            stimulus_width: 500,
             maintain_aspect_ratio:true,
             prompt: function() {
                 return "<span style= 'font-size:200%'><br>" + String(jsPsych.timelineVariable('target_word')) + "<br><span>";
