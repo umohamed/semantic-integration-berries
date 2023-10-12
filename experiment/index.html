@@ -72,7 +72,7 @@
             ],
             show_clickable_nav: true 
         }
-        
+
         var priming_instructions = {
             type: jsPsychInstructions, 
             pages: [
@@ -103,7 +103,7 @@
          stimulus: jsPsych.timelineVariable('sentence'),
          choices: [" "],
          //kept for testing, will remove for final experiment
-         trial_duration: 100,
+         //trial_duration: 100,
          on_finish: function(data) {
             sentence_number = (sentence_number + 1) % 40;
             console.log("sentence_number=" + sentence_number);
@@ -136,7 +136,7 @@
             type: jsPsychSurveyText,
             preamble:  "Respond with the first word comes to mind from words that you read in the reading session.",
             questions: [{prompt:jsPsych.timelineVariable("cue")}],
-            trial_duration: 10
+            //trial_duration: 10
         };
 
         var association_procedure = {
