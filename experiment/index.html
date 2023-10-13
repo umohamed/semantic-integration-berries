@@ -9,10 +9,10 @@
         <script src="jspsych/modified-image-plugin.js"> </script>
         <script src="https://unpkg.com/@jspsych/plugin-instructions@1.1.3"></script>
         <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.1"></script>
-        <script src="sentences.js"> </script>
+        <script src="removed_sentences.js"> </script> 
         <script src="berriespriming.js"> </script>
         <script src="association.js"> </script>
-
+ 
     </head>
     <body> </body>
     <script>
@@ -128,7 +128,7 @@
         }
         var training_procedure = {
             timeline: [sentence, attention_conditional],
-            timeline_variables: sentences, 
+            timeline_variables: removed_sentences, 
             randomize_order: true 
             
         };
