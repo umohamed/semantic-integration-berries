@@ -8,15 +8,37 @@
         <script src="https://unpkg.com/@jspsych/plugin-survey-text@1.1.2"></script>
         <script src="jspsych/modified-image-plugin.js"> </script>
         <script src="https://unpkg.com/@jspsych/plugin-instructions@1.1.3"></script>
-        <script src="sentences.js"> </script>
+        <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.1"></script>
+        <script src="removed_sentences.js"> </script> 
         <script src="berriespriming.js"> </script>
         <script src="association.js"> </script>
-
+ 
     </head>
     <body> </body>
     <script>
-        const jsPsych = initJsPsych();
-        //need to add instructions 
+        const jsPsych = initJsPsych(
+            // {
+            //     on_finish: function(data) {
+            //         jsPsych.data.displayData();
+            //     }
+            // }
+        )
+
+        //generate random ID
+        var id = Math.floor(Math.random() * 1000000000);
+        console.log("id =", id);
+
+        //tag all trials with ID
+        jsPsych.data.addProperties({
+            ID: id
+        });
+
+        var preload = {
+            type: jsPsychPreload,
+            auto_preload: true,
+            images: ['horseapple.png', 'applehorse.png']
+        }
+
         var inital_instructions = {
             type: jsPsychInstructions, 
             pages: [
@@ -30,26 +52,27 @@
         var training_instructions = {
             type: jsPsychInstructions, 
             pages: [
-            'You are done with the first part! <br><br>In this segment, you will be asked to type in the first word that comes to your mind when you hear or read a given word. <br><br>Keep in mind that in this game, you can only use the words you read about in the reading session. <br><br>Type in your answer and press enter when you are ready for the next one.',
+            'You have completed 1 set of training. Here is the next set!',
             ],
             show_clickable_nav: true 
         }
 
-        var assoc_training_instructions = {
-            type: jsPsychInstructions, 
-            pages: [
-                'You have completed the associations. Click to start the next block of sentences.'
-            ],
-            show_clickable_nav: true 
-        }
+        // var assoc_training_instructions = {
+        //     type: jsPsychInstructions, 
+        //     pages: [
+        //         'You have completed the associations. Click to start the next block of sentences.'
+        //     ],
+        //     show_clickable_nav: true 
+        // }
 
         var association_instructions = {
             type: jsPsychInstructions, 
             pages: [
-            'You are done with the first part! <br><br>In this segment, you will be asked to type in the first word that comes to your mind when you hear or read a given word. <br><br>Keep in mind that in this game, you can only use the words you read about in the reading session. <br><br>Type in your answer and press enter when you are ready for the next one.',
+            'You are done with the first part! <br><br>In this next segment, you will be asked to type in the first word that comes to your mind when you hear or read a given word. <br><br>Keep in mind that in this game, you can only use the words you read about in the reading session. <br><br>Type in your answer and press enter when you are ready for the next one.',
             ],
             show_clickable_nav: true 
         }
+
         var priming_instructions = {
             type: jsPsychInstructions, 
             pages: [
@@ -80,7 +103,7 @@
          stimulus: jsPsych.timelineVariable('sentence'),
          choices: [" "],
          //kept for testing, will remove for final experiment
-         trial_duration: 100,
+         //trial_duration: 100,
          on_finish: function(data) {
             sentence_number = (sentence_number + 1) % 40;
             console.log("sentence_number=" + sentence_number);
@@ -105,15 +128,15 @@
         }
         var training_procedure = {
             timeline: [sentence, attention_conditional],
-            timeline_variables: sentences, 
+            timeline_variables: removed_sentences, 
             randomize_order: true 
             
         };
         var association = {
             type: jsPsychSurveyText,
-            //preamble:  "Respond with the first word comes to mind",
+            preamble:  "Respond with the first word comes to mind from words that you read in the reading session.",
             questions: [{prompt:jsPsych.timelineVariable("cue")}],
-            trial_duration: 10
+            //trial_duration: 10
         };
 
         var association_procedure = {
@@ -123,9 +146,8 @@
             repetitions: 3
         };
         var training_plus_association =  {
-            timeline: [training_procedure, training_instructions, training_procedure, 
-            association_instructions, association_procedure, assoc_training_instructions,
-            training_procedure],
+            timeline: [training_procedure, training_instructions, training_procedure, training_instructions,
+            training_procedure, association_instructions, association_procedure],
         }
 
         var image = {
