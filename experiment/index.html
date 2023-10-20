@@ -176,6 +176,17 @@
             timeline_variables: practice_stimuli,
             randomize_order: true
         }
+
+        var dem_survey = {
+            type: jsPsychSurveyText,
+            questions: [
+                {prompt: "What is your age?", name: 'Age'},
+                {prompt: "What is your gender?", name: 'Gender'}
+            ]
+
+        }
+
+
         jsPsych.run([inital_instructions, training_plus_association,priming_instructions,priming_proc])
     
       
