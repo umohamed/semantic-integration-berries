@@ -50,7 +50,10 @@
             'We will present one sentence at a time. <br><br>Read them carefully. When you are ready, press space bar for the next sentence. <br><br>In order to make sure you are reading carefully, there will be surprise questions during the reading session. <br><br>You will be asked to type in the novel words from the last sentence you read. <br><br>Minor spelling mistakes will be tolerated. Type in your answer and press enter when you are ready to move on to the next sentence.',
             'You will now read the sentences. <br> Press SPACEBAR when you have read the sentence and want to move on to the next.'
             ],
-            show_clickable_nav: true 
+            show_clickable_nav: true,
+            data: {
+                typeoftrial: "instructions",
+            },
         }
 
         var training_instructions = {
@@ -58,7 +61,10 @@
             pages: [
             'You have completed 1 set of training. Here is the next set!',
             ],
-            show_clickable_nav: true 
+            show_clickable_nav: true,
+            data: {
+                typeoftrial: "instructions",
+            },
         }
 
         // var assoc_training_instructions = {
@@ -74,7 +80,10 @@
             pages: [
             'You are done with the first part! <br><br>In this next segment, you will be asked to type in the first word that comes to your mind when you hear or read a given word. <br><br>Keep in mind that in this game, you can only use the words you read about in the reading session. <br><br>Type in your answer and press enter when you are ready for the next one.',
             ],
-            show_clickable_nav: true 
+            show_clickable_nav: true,
+            data: {
+                typeoftrial: "instructions",
+            },
         }
 
         var priming_instructions = {
@@ -83,7 +92,10 @@
             'This is our final game. <br><br>You will be presented with slides showing an apple and a horse. <br><br>Your task will be to respond as quickly as possible, on which side of the screen the apple or the horse is shown. <br><br>On the same screen, with pictures, two words will be presented. Read the first word, but respond in accordance with the second word. <br><br>For example, if you see words “boff” and “apple”, respond where the apple is. <br><br>If you see words “boff” and “horse”, respond where the horse is.',
             'You will press A if you want to choose the picture on the left and <br><br> L if you want to choose the picture on the right'
             ],
-            show_clickable_nav: true 
+            show_clickable_nav: true,
+            data: {
+                typeoftrial: "instructions",
+            },
         }
 
         var slow_experiment_trial = {
@@ -98,6 +110,9 @@
             stimulus: "+", 
             choices: "NO_KEYS",
             trial_duration: 500,
+            data: {
+                typeoftrial: "fixation",
+            },
         }
 
         var sentence_number = 0;
@@ -111,7 +126,15 @@
          on_finish: function(data) {
             sentence_number = (sentence_number + 1) % 40;
             console.log("sentence_number=" + sentence_number);
-         }
+         },
+         data: {
+                typeoftrial: "sentence",
+                sentence: jsPsych.timelineVariable("sentence"),
+                novel1: jsPsych.timelineVariable("novel1"),
+                novel2: jsPsych.timelineVariable("novel2"),
+                novel3: jsPsych.timelineVariable("novel3"),
+                // remember to change from "" to NOT_FOUND in the senetnces js 
+            },
         } 
 
         var random_attention_trials = jsPsych.randomization.sampleWithoutReplacement([...Array(35).keys()].map(x => x + 5),3);
@@ -120,7 +143,30 @@
 
         var attention = {
             type: jsPsychSurveyText,
-            questions: [{prompt:"Type any ONE novel word from the previous sentence:"}]
+            questions: [{prompt:"Type any ONE novel word from the previous sentence:"}],
+            data: {
+                typeoftrial: "attention",
+            },
+            no_finish: function(data) {
+                var last_trial_data = jsPsych.data.get().filter({typeoftrial: "sentence"}).last(1).values()[0];
+                console.log("last_trial_data=", last_trial_data);
+                data.novel1 = last_trial_data.novel1;
+                data.novel2 = last_trial_data.novel2;
+                data.novel3 = last_trial_data.novel3;
+                data.response = data.response.Q0;
+
+                if( 
+                    jsPsych.pluginAPI.compareKeys(data.response,data.novel1) ||
+                    jsPsych.pluginAPI.compareKeys(data.response,data.novel2) ||
+                    jsPsych.pluginAPI.compareKeys(data.response,data.novel3) 
+                ) {
+                    data.correct = 1;
+                    console.log("correct=" + data.correct);
+                } else {
+                    data.correct = 0;
+                    console.log("correct=" + data.correct);
+                }
+            },
         };
 
         var attention_conditional = {
@@ -128,7 +174,8 @@
             conditional_function: function() {
                 if(random_attention_trials.includes(sentence_number)) {return true;}
                 else {return false;}
-            }
+            },
+
         }
         var training_procedure = {
             timeline: [sentence, attention_conditional],
@@ -140,7 +187,14 @@
             type: jsPsychSurveyText,
             preamble:  "Respond with the first word comes to mind from words that you read in the reading session.",
             questions: [{prompt:jsPsych.timelineVariable("cue")}],
-            //trial_duration: 10
+            trial_duration: 10,
+            data: {
+                typeoftrial: "association",
+                cue: jsPsych.timelineVariable("cue"),
+            },
+            on_finish: function(data) {
+                data.response = data.response.Q0
+            },
         };
 
         var association_procedure = {
@@ -183,6 +237,17 @@
             maintain_aspect_ratio:true,
             prompt: function() {
                 return "<span style= 'font-size:200%'><br>" + String(jsPsych.timelineVariable('target_word')) + "<br><span>";
+            },
+            data: {
+                typeoftrial: "target",
+                target: jsPsych.timelineVariable("target_word"),
+                type: jsPsych.timelineVariable("type"),
+                relatedness: jsPsych.timelineVariable("relatedness"),
+                correct_key: jsPsych.timelineVariable("correct_key"),
+                block_number: jsPsych.timelineVariable("block_number"),
+            },
+            on_finish:function(data) {
+                data.correct+ jsPsych.pluginAPI.compareKeys(data.response, data.correct_key);
             },
         }
 
@@ -266,6 +331,14 @@
 
         var demographics_survey = {
             timeline: [age, race, ethnicity, hand, language, comments]
+        }
+
+        var thank_you = {
+            type: jsPsychHtmlKeyboardResponse,
+            stimulus: "Thank you for participating in this. Press any key to leave the experiment.",
+            data: {
+                typeoftrial: "thank_you"
+            },
         }
 
 
