@@ -9,11 +9,12 @@
         <script src="jspsych/modified-image-plugin.js"> </script>
         <script src="https://unpkg.com/@jspsych/plugin-instructions@1.1.3"></script>
         <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.1"></script>
-        <script src="removed_sentences.js"> </script> 
+        <script src="sentences.js"> </script> 
         <script src="berriespriming.js"> </script>
         <script src="association.js"> </script>
         <script src="https://unpkg.com/@jspsych/plugin-survey-multi-select@1.1.2"></script>
         <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.2"></script>
+        <script src="demographics.js"> </script>
 
 
  
@@ -21,11 +22,11 @@
     <body> </body>
     <script>
         const jsPsych = initJsPsych(
-            // {
-            //     on_finish: function(data) {
-            //         jsPsych.data.displayData();
-            //     }
-            // }
+            {
+                on_finish: function(data) {
+                    jsPsych.data.displayData();
+                }
+            }
         )
 
         //generate random ID
@@ -179,7 +180,7 @@
         }
         var training_procedure = {
             timeline: [sentence, attention_conditional],
-            timeline_variables: removed_sentences, 
+            timeline_variables: sentences, 
             randomize_order: true 
             
         };
@@ -231,7 +232,7 @@
         }
         var target = {
             type:jsPsychImageKeyboardResponse,
-           stimulus: jsPsych.timelineVariable('image_path'),
+            stimulus: jsPsych.timelineVariable('image_path'),
             choices: ["A", "L"],
             stimulus_width: 500,
             maintain_aspect_ratio:true,
@@ -268,69 +269,11 @@
             randomize_order: true
         }
 
-        var age = {
-            type: jsPsychSurveyText,
-            questions: [
-                {prompt: "What is your age?", name: 'Age', required: true},
-                {prompt: "What is your gender?", name: 'Gender', required: true},
-                {prompt: "How many years of formal education have you had?", name: 'Education', required: true},
-            ],
-        }
-
-        var race = { 
-            type: jsPsychSurveyMultiSelect,
-            questions: [
-                {
-                    prompt: "Please select all the racial categories that apply to you:",
-                    options: ["American Indian/Alaskan Native", "Asian", "Black/African American", "Native Hawaiian or Other Pacific Islander", "White/Caucasian", "More than one race", "Other"],
-                    vertical: true,
-                    required: true,
-                    name: 'Race'
-                }
-            ]
-        }
-
-        var ethnicity = {
-            type: jsPsychHtmlButtonResponse,
-            prompt: 'Are you of Hispanic, Latino/a/x or of Spanish origin?',
-            choices: ["Yes", "No"],
-            name: 'Ethnicity',
-            required: true
-        }
-
-        var hand = {
-            type: jsPsychHtmlButtonResponse,
-            prompt: "What is your dominant hand?",
-            choices: ["Left", "Right", "Ambidextrous"],
-            name: 'Handedness',
-            required: true
-        }
-
-        var time = {
-            type: jsPsychHtmlButtonResponse,
-            prompt: "Please indicate what time of the day you feel most alert",
-            choices: ["Morning", "Afternoon", "Evening", "No Differences"],
-            name: 'Time of day',
-            required: true
-        }
-
-        var language = {
-            type: jsPsychHtmlButtonResponse,
-            prompt: 'Is English your first language',
-            choices: ["Yes", "No"],
-            name: 'Language',
-            required: true
-        }
-
-        var comments = { 
-            type: jsPsychSurveyText,
-            questions: [ 
-                {prompt: "Is there anything else we should know about, which might have affected your performance during the experiment? (e.g., lack of sleep, feeling ill etc.)", name: 'Comments',}
-            ]
-        }
+        
 
         var demographics_survey = {
-            timeline: [age, race, ethnicity, hand, language, comments]
+            //timeline: [age, race, ethnicity, hand, time, language, comments]
+            timeline: [language]
         }
 
         var thank_you = {
@@ -341,8 +284,9 @@
             },
         }
 
+        jsPsych.run([demographics_survey])
 
-        jsPsych.run([inital_instructions, training_plus_association,priming_instructions,priming_proc])
+        //jsPsych.run([inital_instructions, training_plus_association, priming_instructions, priming_proc, thank_you])
     
       
     </script>
