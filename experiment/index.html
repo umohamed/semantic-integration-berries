@@ -263,17 +263,25 @@
                 }
                 }
             }
-        var priming_proc = {
-            timeline: [fixation, image, prime, target,priming_feedback],
+
+        var practice_proc = {
+            timeline: [fixation, image, prime, target, priming_feedback],
             timeline_variables: practice_stimuli,
             randomize_order: true
+        }
+
+        var priming_proc = {
+            timeline: [fixation, image, prime, target,priming_feedback],
+            timeline_variables: test_stimuli,
+            randomize_order: true,
+            repetitions: 2
         }
 
         
 
         var demographics_survey = {
-            //timeline: [age, race, ethnicity, hand, time, language, comments]
-            timeline: [language]
+            timeline: [age, race, ethnicity, hand, time, language, comments],
+            //timeline: [language]
         }
 
         var thank_you = {
@@ -286,7 +294,7 @@
 
         jsPsych.run([demographics_survey])
 
-        //jsPsych.run([inital_instructions, training_plus_association, priming_instructions, priming_proc, thank_you])
+        //jsPsych.run([preload, inital_instructions, training_plus_association, priming_instructions, practice_proc, priming_proc, demographics_survey, thank_you])
     
       
     </script>
