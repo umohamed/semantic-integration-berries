@@ -62,7 +62,7 @@ var time = {
 }
 
 var language = {
-    timeline: [language_question1, no_lang]
+    timeline: [language_question1] //no_lang
 }
 
 var language_question1 = {
@@ -74,6 +74,15 @@ var language_question1 = {
     data: {
         typeoftrial: "demo_language",
     },
+}
+var no_lang_question1 = {
+    type: jsPsychSurveyText,
+    questions: [{promt: "What is your first language?"}, required = true]
+}
+
+var no_lang_question2 = {
+    type: jsPsychSurveyText,
+    questions: [{promt: "At what age did you learn English?"}, required = true]
 }
 
 var no_lang = {
@@ -87,20 +96,11 @@ var no_lang = {
             return true
         }
         else {
-            return false
-        }
+           return false
+       }
     }
 }
 
-var no_lang_question1 = {
-    type: jsPsychSurveyText,
-    questions: [{promt: "What is your first language?"}, required = true]
-}
-
-var no_lang_question2 = {
-    type: jsPsychSurveyText,
-    questions: [{promt: "At what age did you learn English?"}, required = true]
-}
 
 var comments = { 
     type: jsPsychSurveyText,

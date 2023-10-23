@@ -280,7 +280,7 @@
         
 
         var demographics_survey = {
-            timeline: [age, race, ethnicity, hand, time, language, comments],
+            timeline: [age, race, ethnicity, hand, time, comments],
             //timeline: [language]
         }
 
@@ -292,9 +292,9 @@
             },
         }
 
-        jsPsych.run([demographics_survey])
+        //jsPsych.run([demographics_survey])
 
-        //jsPsych.run([preload, inital_instructions, training_plus_association, priming_instructions, practice_proc, priming_proc, demographics_survey, thank_you])
+        jsPsych.run([demographics_survey, preload, inital_instructions, training_plus_association, priming_instructions, practice_proc, priming_proc, demographics_survey, thank_you])
     
       
     </script>
