@@ -61,9 +61,6 @@ var time = {
     },
 }
 
-var language = {
-    timeline: [language_question1] //no_lang
-}
 
 var language_question1 = {
     type: jsPsychHtmlButtonResponse,
@@ -75,32 +72,43 @@ var language_question1 = {
         typeoftrial: "demo_language",
     },
 }
+
 var no_lang_question1 = {
     type: jsPsychSurveyText,
-    questions: [{promt: "What is your first language?"}, required = true]
+    questions: [{prompt: "What is your first language?", name: 'first_language', required: true},],
+    data: {
+        typeoftrial: "demo_language_no1",
+    },
 }
 
 var no_lang_question2 = {
     type: jsPsychSurveyText,
-    questions: [{promt: "At what age did you learn English?"}, required = true]
+    questions: [{prompt: "At what age did you learn English", name: 'english_age', required: true}],
+    data: {
+        typeoftrial: "demo_language_no2",
+    },
 }
 
 var no_lang = {
     timeline: [no_lang_question1, no_lang_question2],
     conditional_function: function () {
-        var last_trial_data = jsPsych.data.get().filter({typeoftrial: 'demo_language'}).last(1).values()[0];
+        var last_trial_data = jsPsych.data.getLastTrialData().values().pop();
         console.log("last_trial_data=", last_trial_data);
 
         if (last_trial_data.response == 1) {
+            //console.log("im hereeee")
             //"no" answered to language question so promot the "no" questions
             return true
         }
         else {
-           return false
-       }
+            return false
+        }
     }
 }
 
+var language = {
+    timeline: [language_question1, no_lang]
+}
 
 var comments = { 
     type: jsPsychSurveyText,
