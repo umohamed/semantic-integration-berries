@@ -15,6 +15,7 @@
         <script src="https://unpkg.com/@jspsych/plugin-survey-multi-select@1.1.2"></script>
         <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.2"></script>
         <script src="demographics.js"> </script>
+        <script src="countdown.js"></script>
 
 
  
@@ -57,10 +58,21 @@
             },
         }
 
-        var training_instructions = {
+        var training_instructions1 = {
             type: jsPsychInstructions, 
             pages: [
-            'You have completed 1 set of training. Here is the next set!',
+            'You have completed the first set of training. Here is the next set.',
+            ],
+            show_clickable_nav: true,
+            data: {
+                typeoftrial: "instructions",
+            },
+        }
+
+        var training_instructions2 = {
+            type: jsPsychInstructions, 
+            pages: [
+            'You have completed the second set of training. Here is the next set.',
             ],
             show_clickable_nav: true,
             data: {
@@ -91,7 +103,8 @@
             type: jsPsychInstructions, 
             pages: [
             'This is our final game. <br><br>You will be presented with slides showing an apple and a horse. <br><br>Your task will be to respond as quickly as possible, on which side of the screen the apple or the horse is shown. <br><br>On the same screen, with pictures, two words will be presented. Read the first word, but respond in accordance with the second word. <br><br>For example, if you see words “boff” and “apple”, respond where the apple is. <br><br>If you see words “boff” and “horse”, respond where the horse is.',
-            'You will press A if you want to choose the picture on the left and <br><br> L if you want to choose the picture on the right'
+            'You will press A if you want to choose the picture on the left and <br><br> L if you want to choose the picture on the right',
+            'You will be given a 30 second break at the halfway point of this section.'
             ],
             show_clickable_nav: true,
             data: {
@@ -110,7 +123,8 @@
             type: jsPsychHtmlKeyboardResponse,
             stimulus: "+", 
             choices: "NO_KEYS",
-            trial_duration: 500,
+            //trial_duration: 500,
+            trial_duration: 10, //for testing
             data: {
                 typeoftrial: "fixation",
             },
@@ -205,7 +219,7 @@
             repetitions: 3
         };
         var training_plus_association =  {
-            timeline: [training_procedure, training_instructions, training_procedure, training_instructions,
+            timeline: [training_procedure, training_instructions1, training_procedure, training_instructions2,
             training_procedure, association_instructions, association_procedure],
         }
 
@@ -213,7 +227,8 @@
             type: jsPsychImageKeyboardResponse,
             stimulus: jsPsych.timelineVariable('image_path'),
             choices: "NO_KEYS",
-            trial_duration: 500,
+            //trial_duration: 500,
+            trial_duration: 10, //for testing
             stimulus_width: 500,
             maintain_aspect_ratio: true,
             prompt: "<span style = 'font-size:200%'><br><br></span"
@@ -222,7 +237,8 @@
         var prime = {
             type: jsPsychImageKeyboardResponse,
             stimulus: jsPsych.timelineVariable('image_path'),
-            trial_duration: 300,
+            //trial_duration: 300,
+            trial_duration: 10, //for testing
             choices: "NO_KEYS",
             stimulus_width: 500,
             maintain_aspect_ratio: true,
@@ -235,6 +251,7 @@
             stimulus: jsPsych.timelineVariable('image_path'),
             choices: ["A", "L"],
             stimulus_width: 500,
+            trial_duration: 10, //for testing
             maintain_aspect_ratio:true,
             prompt: function() {
                 return "<span style= 'font-size:200%'><br>" + String(jsPsych.timelineVariable('target_word')) + "<br><span>";
@@ -264,6 +281,21 @@
                 }
             }
 
+        var countdown = {
+            type: jsPsychHtmlKeyboardResponse,
+            stimulus: function() {
+                return "<span style= 'font-size:150%'><br>" + "The second half of this section starts in " + 
+                    "<b>" + jsPsych.timelineVariable('number') + "</b>"+ " seconds." + "<br><span>";
+            },
+            trial_duration: 1000,
+            choices: "NO_KEYS",
+        }
+
+        var countdown_proc = {
+            timeline: [countdown],
+            timeline_variables: countdown_numbers,
+        }
+
         var practice_proc = {
             timeline: [fixation, image, prime, target, priming_feedback],
             timeline_variables: practice_stimuli,
@@ -271,10 +303,13 @@
         }
 
         var priming_proc = {
-            timeline: [fixation, image, prime, target,priming_feedback],
+            timeline: [fixation, image, prime, target, priming_feedback],
             timeline_variables: test_stimuli,
             randomize_order: true,
-            repetitions: 2
+        }
+
+        var full_priming_proc = {
+            timeline: [priming_proc, countdown_proc, priming_proc]
         }
 
         
@@ -292,9 +327,9 @@
             },
         }
 
-        //jsPsych.run([demographics_survey])
+        //jsPsych.run([full_priming_proc])
 
-        jsPsych.run([demographics_survey, preload, inital_instructions, training_plus_association, priming_instructions, practice_proc, priming_proc, demographics_survey, thank_you])
+        jsPsych.run([demographics_survey, preload, inital_instructions, training_plus_association, priming_instructions, practice_proc, full_priming_proc, demographics_survey, thank_you])
     
       
     </script>
