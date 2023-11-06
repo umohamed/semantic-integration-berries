@@ -80,6 +80,17 @@
             },
         }
 
+        var training_instructions3 = {
+            type: jsPsychInstructions, 
+            pages: [
+            'You have completed the last set of training.',
+            ],
+            show_clickable_nav: true,
+            data: {
+                typeoftrial: "instructions",
+            },
+        }
+
         // var assoc_training_instructions = {
         //     type: jsPsychInstructions, 
         //     pages: [
@@ -91,7 +102,7 @@
         var association_instructions = {
             type: jsPsychInstructions, 
             pages: [
-            'You are done with the first part! <br><br>In this next segment, you will be asked to type in the first word that comes to your mind when you hear or read a given word. <br><br>Keep in mind that in this game, you can only use the words you read about in the reading session. <br><br>Type in your answer and press enter when you are ready for the next one.',
+            'You are done with the first part! <br><br>In this next segment, you will be asked to type in the <strong> first word  from the experiment </strong> that comes to your mind when you see the given word. <br><br>Keep in mind that in this game, you can only use the words you read about in the reading session. <br><br>Type in your answer and press enter when you are ready for the next one.',
             ],
             show_clickable_nav: true,
             data: {
@@ -102,7 +113,7 @@
         var priming_instructions = {
             type: jsPsychInstructions, 
             pages: [
-            'This is our final game. <br><br>You will be presented with slides showing an apple and a horse. <br><br>Your task will be to respond as quickly as possible, on which side of the screen the apple or the horse is shown. <br><br>On the same screen, with pictures, two words will be presented. Read the first word, but respond in accordance with the second word. <br><br>For example, if you see words “boff” and “apple”, respond where the apple is. <br><br>If you see words “boff” and “horse”, respond where the horse is.',
+            'This is our final game. <br><br>You will be presented with slides showing an apple and a horse. <br><br>Your task will be to respond as quickly as possible, on which side of the screen the apple or the horse is shown. <br><br>On the same screen, with pictures, two words will be presented. Read the first word, but respond in accordance with the second word. <br><br>For example, if you see words boff and apple, respond where the apple is. <br><br>If you see words boff and horse, respond where the horse is.',
             'You will press A if you want to choose the picture on the left and <br><br> L if you want to choose the picture on the right',
             'You will be given a 30 second break at the halfway point of this section.'
             ],
@@ -137,7 +148,8 @@
          stimulus: jsPsych.timelineVariable('sentence'),
          choices: [" "],
          //kept for testing, will remove for final experiment
-         //trial_duration: 100,
+         trial_duration: 100,
+         //trial_duration: 5000,
          on_finish: function(data) {
             sentence_number = (sentence_number + 1) % 40;
             console.log("sentence_number=" + sentence_number);
@@ -162,12 +174,13 @@
             data: {
                 typeoftrial: "attention",
             },
-            no_finish: function(data) {
+            on_finish: function(data) {
                 var last_trial_data = jsPsych.data.get().filter({typeoftrial: "sentence"}).last(1).values()[0];
                 console.log("last_trial_data=", last_trial_data);
                 data.novel1 = last_trial_data.novel1;
                 data.novel2 = last_trial_data.novel2;
                 data.novel3 = last_trial_data.novel3;
+                data.response.Q0 = data.response.Q0.replace("Q0"," ");
                 data.response = data.response.Q0;
 
                 if( 
@@ -220,7 +233,7 @@
         };
         var training_plus_association =  {
             timeline: [training_procedure, training_instructions1, training_procedure, training_instructions2,
-            training_procedure, association_instructions, association_procedure],
+            training_procedure, training_instructions3,  association_instructions, association_procedure],
         }
 
         var image = {
