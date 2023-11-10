@@ -266,7 +266,7 @@
                 block_number: jsPsych.timelineVariable("block_number"),
             },
             on_finish:function(data) {
-                data.correct+ jsPsych.pluginAPI.compareKeys(data.response, data.correct_key);
+                data.correct = jsPsych.pluginAPI.compareKeys(data.response, data.correct_key);
             },
         }
 
@@ -277,9 +277,9 @@
                 if (rt > 800 & jsPsych.data.get().last(1).values()[0].correct == false){
                     return "<span style= 'color:red'>Incorrect </span> and <b>too slow</b>! <br>"
                 } else if (rt > 800 & jsPsych.data.get().last(1).values()[0].correct == true){
-                    return "Correct but <b>too slow</b>! <br><br> Please try to respond faster"
+                    return "Correct but <b>too slow</b>! <br><br> Please try to respond faster."
                 } else if (jsPsych.data.get().last(1).values()[0].correct == false & rt < 800){
-                    return "<span style= 'color:red'>Incorrect!</span> <br><br> Please remember"
+                    return "<span style= 'color:red'>Incorrect!</span> <br><br> Please remember to click the button corresponding to the image."
                 } else {
                     return "Correct!";
                 }
@@ -347,7 +347,7 @@
 
         //jsPsych.run([full_priming_proc])
 
-        jsPsych.run([demographics_survey])
+        jsPsych.run([practice_proc])
             
         //preload, inital_instructions, training_plus_association, priming_instructions, practice_proc, full_priming_proc, demographics_survey, thank_you])
     
