@@ -121,7 +121,7 @@
 
         var fixation= {
             type: jsPsychHtmlKeyboardResponse,
-            stimulus: "+", 
+            stimulus: "<span style= 'font-size:170%'>+</span>", 
             choices: "NO_KEYS",
             trial_duration: 500,
             //trial_duration: 10, //for testing
@@ -275,11 +275,11 @@
             stimulus: function(){
                 var rt = jsPsych.data.get().last(1).values()[0].rt;
                 if (rt > 800 & jsPsych.data.get().last(1).values()[0].correct == false){
-                    return "<span style= 'color:red'>Incorrect </span> and <b>too slow</b>! <br>"
+                    return "<span style= 'color:red'>Incorrect </span> and <b>too slow</b>! <br> <br>Please remember to press A if the word corresponds to the image on the left and L if the word corresponds to the image on the right. <br><br> Please also to respond faster."
                 } else if (rt > 800 & jsPsych.data.get().last(1).values()[0].correct == true){
                     return "Correct but <b>too slow</b>! <br><br> Please try to respond faster."
                 } else if (jsPsych.data.get().last(1).values()[0].correct == false & rt < 800){
-                    return "<span style= 'color:red'>Incorrect!</span> <br><br> Please remember to click the button corresponding to the image."
+                    return "<span style= 'color:red'>Incorrect!</span> <br><br> Please remember to press A if the word corresponds to the image on the left and L if the word corresponds to the image on the right."
                 } else {
                     return "Correct!";
                 }
