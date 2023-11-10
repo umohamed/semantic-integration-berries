@@ -278,8 +278,7 @@
                     return "<span style= 'color:red'>Incorrect </span> and <b>too slow</b>! <br>"
                 } else if (rt > 800 & jsPsych.data.get().last(1).values()[0].correct == true){
                     return "Correct but <b>too slow</b>! <br><br> Please try to respond faster"
-                }
-                else if (jsPsych.data.get().last(1).values()[0].correct == false & rt < 800){
+                } else if (jsPsych.data.get().last(1).values()[0].correct == false & rt < 800){
                     return "<span style= 'color:red'>Incorrect!</span> <br><br> Please remember"
                 } else {
                     return "Correct!";
