@@ -57,7 +57,7 @@ var countdown_numbers = [
 		number: "12"
 	},
 	{
-		number: "22"
+		number: "11"
 	},
 	{
 		number: "10"
