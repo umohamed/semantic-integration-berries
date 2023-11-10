@@ -116,7 +116,7 @@
             type: jsPsychHtmlKeyboardResponse,
             stimulus: "<b> Too slow </b>! <br><br> Please try to respond faster.",
             choices: "NO_KEYS",
-            trial_duration: 10000
+            trial_duration: 1000
         }
 
         var fixation= {
@@ -136,7 +136,8 @@
          type: jsPsychHtmlKeyboardResponse,
          stimulus: jsPsych.timelineVariable('sentence'),
          choices: [" "],
-         trial_duration: 5000,
+         //kept for testing, will remove for final experiment
+         //trial_duration: 100,
          on_finish: function(data) {
             sentence_number = (sentence_number + 1) % 40;
             console.log("sentence_number=" + sentence_number);
@@ -201,7 +202,7 @@
             type: jsPsychSurveyText,
             preamble:  "Respond with the first word comes to mind from words that you read in the reading session.",
             questions: [{prompt:jsPsych.timelineVariable("cue")}],
-            trial_duration: 1000,
+            trial_duration: 10,
             data: {
                 typeoftrial: "association",
                 cue: jsPsych.timelineVariable("cue"),
@@ -333,7 +334,7 @@
         
 
         var demographics_survey = {
-            timeline: [age, race, ethnicity, hand, time, comments],
+            timeline: [dem_instructions, age, race, ethnicity, hand, time, comments],
             //timeline: [language]
         }
 
@@ -347,7 +348,7 @@
 
         //jsPsych.run([full_priming_proc])
 
-        jsPsych.run([practice_proc])
+        jsPsych.run([demographics_survey])
             
         //preload, inital_instructions, training_plus_association, priming_instructions, practice_proc, full_priming_proc, demographics_survey, thank_you])
     

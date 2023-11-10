@@ -1,5 +1,16 @@
 //all functions needed for the demographics survey
 
+var dem_instructions = {
+    type: jsPsychInstructions, 
+            pages: [
+            'You have completed the experiment! <br><br> You will now be asked a series of demographic questions.',
+            ],
+            show_clickable_nav: true,
+            data: {
+                typeoftrial: "demo_instructions",
+            },
+}
+
 var age = {
     type: jsPsychSurveyText,
     questions: [
