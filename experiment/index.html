@@ -24,8 +24,12 @@
     <script>
         const jsPsych = initJsPsych(
             {
+                show_progress_bar: true,
+                auto_update_progress_bar: false,
                 on_finish: function(data) {
                     jsPsych.data.displayData();
+                    let sona_id = jsPsych.data.urlVariables()['sona_id']
+                    window.location.assign("https://bowdoin.sona-systems.com/webstudy_credit.aspx?experiment_id=218&credit_token=ecd1a56cc7194604ba296e8e927f57ac&survey_code=" +sona_id)
                 }
             }
         )
@@ -116,12 +120,12 @@
             type: jsPsychHtmlKeyboardResponse,
             stimulus: "<b> Too slow </b>! <br><br> Please try to respond faster.",
             choices: "NO_KEYS",
-            trial_duration: 1000
+            trial_duration: 10000
         }
 
         var fixation= {
             type: jsPsychHtmlKeyboardResponse,
-            stimulus: "<span style= 'font-size:170%'>+</span>", 
+            stimulus: "<span style= 'font-size:170%'>+</span>",
             choices: "NO_KEYS",
             trial_duration: 500,
             //trial_duration: 10, //for testing
@@ -136,8 +140,7 @@
          type: jsPsychHtmlKeyboardResponse,
          stimulus: jsPsych.timelineVariable('sentence'),
          choices: [" "],
-         //kept for testing, will remove for final experiment
-         //trial_duration: 100,
+         trial_duration: 5000,
          on_finish: function(data) {
             sentence_number = (sentence_number + 1) % 40;
             console.log("sentence_number=" + sentence_number);
@@ -202,7 +205,7 @@
             type: jsPsychSurveyText,
             preamble:  "Respond with the first word comes to mind from words that you read in the reading session.",
             questions: [{prompt:jsPsych.timelineVariable("cue")}],
-            trial_duration: 10,
+            trial_duration: 1000,
             data: {
                 typeoftrial: "association",
                 cue: jsPsych.timelineVariable("cue"),
@@ -266,27 +269,29 @@
                 block_number: jsPsych.timelineVariable("block_number"),
             },
             on_finish:function(data) {
-                data.correct = jsPsych.pluginAPI.compareKeys(data.response, data.correct_key);
+                data.correct+ jsPsych.pluginAPI.compareKeys(data.response, data.correct_key);
             },
         }
 
         var practice_feedback = {
-            type:jsPsychHtmlKeyboardResponse,
+            type: jsPsychHtmlKeyboardResponse,
             stimulus: function(){
                 var rt = jsPsych.data.get().last(1).values()[0].rt;
                 if (rt > 800 & jsPsych.data.get().last(1).values()[0].correct == false){
-                    return "<span style= 'color:red'>Incorrect </span> and <b>too slow</b>! <br> <br>Please remember to press A if the word corresponds to the image on the left and L if the word corresponds to the image on the right. <br><br> Please also to respond faster."
+                    return "<span style= 'color:red'>Incorrect </span> and <b>too slow</b>! <br> <br>Please remember to press A if the word corresponds to the image on the left and L if the word corresponds to the image on the right. <br><br> Please also to respond faster.";
                 } else if (rt > 800 & jsPsych.data.get().last(1).values()[0].correct == true){
-                    return "Correct but <b>too slow</b>! <br><br> Please try to respond faster."
-                } else if (jsPsych.data.get().last(1).values()[0].correct == false & rt < 800){
-                    return "<span style= 'color:red'>Incorrect!</span> <br><br> Please remember to press A if the word corresponds to the image on the left and L if the word corresponds to the image on the right."
+                    return "Correct but <b>too slow</b>! <br><br> Please try to respond faster.";
+                 }
+                 else if (jsPsych.data.get().last(1).values()[0].correct == false & rt < 800){
+                    return "<span style= 'color:red'>Incorrect!</span> <br><br> Please remember to press A if the word corresponds to the image on the left and L if the word corresponds to the image on the right.";
                 } else {
                     return "Correct!";
-                }
-            },
-            choices: "NO_KEYS",
-            trial_duration: 1000
-        }
+             }
+             },
+             choices: "NO_KEYS",
+             trial_duration: 1000
+            }
+
 
         var priming_feedback = {
             timeline: [slow_experiment_trial],
@@ -345,11 +350,9 @@
             },
         }
 
-        //jsPsych.run([full_priming_proc])
+    
 
-        jsPsych.run([practice_proc])
-            
-        //preload, inital_instructions, training_plus_association, priming_instructions, practice_proc, full_priming_proc, demographics_survey, thank_you])
+        jsPsych.run([preload, inital_instructions, training_plus_association, priming_instructions, practice_proc, full_priming_proc, demographics_survey, thank_you])
     
       
     </script>
