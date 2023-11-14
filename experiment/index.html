@@ -279,7 +279,7 @@
             stimulus: function(){
                 var rt = jsPsych.data.get().last(1).values()[0].rt;
                 if (rt > 800 & jsPsych.data.get().last(1).values()[0].correct == false){
-                    return "<span style= 'color:red'>Incorrect </span> and <b>too slow</b>! <br> <br>Please remember to press A if the word corresponds to the image on the left and L if the word corresponds to the image on the right. <br><br> Please also to respond faster.";
+                    return "<span style= 'color:red'>Incorrect </span> and <b>too slow</b>! <br> <br>Please remember to press A if the word corresponds to the image on the left and L if the word corresponds to the image on the right. <br><br> Please also try to respond faster.";
                 } else if (rt > 800 & jsPsych.data.get().last(1).values()[0].correct == true){
                     return "Correct but <b>too slow</b>! <br><br> Please try to respond faster.";
                  }

@@ -16,7 +16,7 @@ var age = {
     questions: [
         {prompt: "What is your age?", name: 'Age', required: true},
         {prompt: "What is your gender?", name: 'Gender', required: true},
-        {prompt: "How many years of formal education have you had?", name: 'Education', required: true},
+        {prompt: "How many years of formal education have you had? (HS = 12 years)", name: 'Education', required: true},
     ],
     data: {
         typeoftrial: "demo_age",
