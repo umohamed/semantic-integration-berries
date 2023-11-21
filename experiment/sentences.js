@@ -94,8 +94,8 @@ var sentences = [
     "Pair": "mipp",
     "Part": "training",
     "sentence": "I didn't find a mipp.",
-    "novel1": "foobly",
-    "novel2": "mipp",
+    "novel1": "mipp",
+    "novel2": "NOT_FOUND",
     "novel3": "NOT_FOUND"
   },
   {
@@ -103,8 +103,8 @@ var sentences = [
     "Pair": "mipp",
     "Part": "training",
     "sentence": "My sister told me you can get a mipp there.",
-    "novel1": "foobly",
-    "novel2": "mipp",
+    "novel1": "mipp",
+    "novel2": "NOT_FOUND",
     "novel3": "NOT_FOUND"
   },
   {
@@ -112,8 +112,8 @@ var sentences = [
     "Pair": "mipp",
     "Part": "training",
     "sentence": "My friend Sally said she saw a mipp once.",
-    "novel1": "foobly",
-    "novel2": "mipp",
+    "novel1": "mipp",
+    "novel2": "NOT_FOUND",
     "novel3": "NOT_FOUND"
   },
   {
@@ -121,8 +121,8 @@ var sentences = [
     "Pair": "mipp",
     "Part": "training",
     "sentence": "There was a mipp just a few steps from here.",
-    "novel1": "foobly",
-    "novel2": "mipp",
+    "novel1": "mipp",
+    "novel2": "NOT_FOUND",
     "novel3": "NOT_FOUND"
   },
   {
@@ -130,8 +130,8 @@ var sentences = [
     "Pair": "mipp",
     "Part": "training",
     "sentence": "It's absolutely amazing to get to see a mipp in person.",
-    "novel1": "foobly",
-    "novel2": "mipp",
+    "novel1": "mipp",
+    "novel2": "NOT_FOUND",
     "novel3": "NOT_FOUND"
   },
   {
@@ -139,8 +139,8 @@ var sentences = [
     "Pair": "mipp",
     "Part": "training",
     "sentence": "I thought maybe I'd see a mipp on the next day.",
-    "novel1": "foobly",
-    "novel2": "mipp",
+    "novel1": "mipp",
+    "novel2": "NOT_FOUND",
     "novel3": "NOT_FOUND"
   },
   {
@@ -148,8 +148,8 @@ var sentences = [
     "Pair": "mipp",
     "Part": "training",
     "sentence": "I also love to have a mipp.",
-    "novel1": "foobly",
-    "novel2": "mipp",
+    "novel1": "mipp",
+    "novel2": "NOT_FOUND",
     "novel3": "NOT_FOUND"
   },
   {
@@ -157,17 +157,17 @@ var sentences = [
     "Pair": "mipp",
     "Part": "training",
     "sentence": "I imagined that I would find a mipp in Zimziland.",
-    "novel1": "foobly",
-    "novel2": "mipp",
-    "novel3": "Zimziland"
+    "novel1": "mipp",
+    "novel2": "Zimziland",
+    "novel3": "NOT_FOUND"
   },
   {
     "Triad": 1,
     "Pair": "mipp",
     "Part": "training",
     "sentence": "On the second day, I saw a mipp.",
-    "novel1": "foobly",
-    "novel2": "mipp",
+    "novel1": "mipp",
+    "novel2": "NOT_FOUND",
     "novel3": "NOT_FOUND"
   },
   {
@@ -175,8 +175,8 @@ var sentences = [
     "Pair": "mipp",
     "Part": "training",
     "sentence": "Sometimes I wish it were easier to get a mipp.",
-    "novel1": "foobly",
-    "novel2": "mipp",
+    "novel1": "mipp",
+    "novel2": "NOT_FOUND",
     "novel3": "NOT_FOUND"
   },
   {
