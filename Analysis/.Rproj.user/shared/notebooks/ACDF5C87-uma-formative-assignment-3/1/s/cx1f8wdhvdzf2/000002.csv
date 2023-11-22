@@ -1,0 +1,11 @@
+"0","```r
+library(\"tidyverse\")
+library(\"emmeans\")
+library(\"performance\")
+library(\"see\")
+library(\"patchwork\")
+library(dplyr) 
+library(tidyr)
+data = read.csv(\"formative_assignment_3_data.csv\")
+
+```"
