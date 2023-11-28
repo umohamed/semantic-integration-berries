@@ -1,6 +1,0 @@
-"0","```r
-
-
-ggplot(data = plot_data) + 
-  geom_boxplot(mapping = aes(x = subject, y = accuracy, fill = condition)) 
-```"

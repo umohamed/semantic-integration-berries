@@ -268,6 +268,7 @@
                 relatedness: jsPsych.timelineVariable("relatedness"),
                 correct_key: jsPsych.timelineVariable("correct_key"),
                 block_number: jsPsych.timelineVariable("block_number"),
+                coocurrence: jsPsych.timelineVariable("coocurrence")
             },
             on_finish:function(data) {
                 data.correct = jsPsych.pluginAPI.compareKeys(data.response, data.correct_key);

@@ -1,0 +1,154 @@
+---
+title: "Semantic Integration Berries"
+output: html_document
+date: "2023-11-21"
+---
+
+#install and load packages 
+```{r}
+install.packages("tidyverse")
+install.packages("emmeans")
+install.packages("performance")
+install.packages("see")
+install.packages("patchwork")
+install.packages("dplyr") 
+install.packages("tidyr")
+```
+# Load Packages
+```{r}
+library(tidyverse)
+library(emmeans)
+library(performance)
+library(see)
+library(patchwork)
+library(dplyr)
+library(tidyr)
+```
+
+
+#Import Data 
+```{r}
+#prolific_data = read.csv("")
+#sona_data = read.csv("")
+
+```
+
+# Import data 
+```{r}
+library(dplyr)
+pilot_data = read.csv("first_sona_data.csv") %>%
+  mutate(rt = as.numeric(rt),
+         relatedness = as.factor(relatedness),
+         type = as.factor(type),
+         revised_correct = as.numeric(revised_correct))
+```
+
+```{r}
+nrow(pilot_data)
+levels(pilot_data$relatedness)
+```
+
+# Basic Descriptives
+```{r}
+pilot_data %>% filter(typeoftrial == "target") %>% group_by(ID) %>% count()
+```
+
+```{r}
+pilot_data %>%
+  filter(typeoftrial == "target") %>%
+  pull(rt)
+```
+
+```{r}
+pilot_data %>%
+  pull(ID) %>% unique() %>% length()
+```
+
+# Attention
+
+```{r}
+attention_trials = pilot_data %>% filter(typeoftrial == "attention") %>%
+  select(ID, revised_response, novel1, novel2, novel3, revised_correct)
+
+## Mean
+attention_trials %>%
+  summarize(mean_accuracy = mean(revised_correct),
+            sd_accuracy = sd(revised_correct))
+
+## Summarize Participant Activity 
+subject_attention_accuracy = attention_trials %>%
+  group_by(ID) %>%
+  summarize(mean_accuracy = mean(revised_correct))
+
+## Find IDs that have less than 75% accuracy
+low_acc_IDs = subject_attention_accuracy %>%
+  filter(mean_accuracy < 0.75) %>%
+  pull(ID)
+```
+
+# Priming
+```{r}
+priming_data = pilot_data %>% filter(typeoftrial == "target") %>%
+  select(ID, rt, relatedness, prime, response, type, correct, block_number, target, correct_key) %>%
+  filter(!is.na(rt), rt > 250, rt < 1500, correct == "TRUE", block_number == 1) %>%
+  filter(relatedness %in% c("related", "unrelated") & type %in% c("direct", "novel")) %>%
+  filter(!ID %in% low_acc_IDs)
+```
+
+# Plot 
+```{r}
+priming_data %>% 
+  group_by(type, relatedness) %>%
+  summarize(mean_rt = mean(rt)) %>%
+  ggplot() +
+  geom_col(mapping = aes(x= type, y = mean_rt,
+                         group = relatedness, fill = relatedness),
+           position = "dodge")+
+  theme_bw()+
+  scale_fill_grey()
+```
+
+
+#Inspect Data 
+```{r}
+nrow(pilot_data)
+ncol(pilot_data)
+pilot_data  %>% pull(subject)  %>%  unique() 
+#how mnay trials 
+independent_variables = pilot_data   %>% 
+  select()
+dependent_variables = pilot_data   %>% 
+  select()
+#IV levels? 
+
+
+```
+
+#Basic Descriptives 
+```{r}
+mean_accuracy_stdev = pilot_data   %>% 
+  summarise(mean_accuracy = mean(accuracy), mean_sd = mean(sd))
+
+ggplot(data = pilot_data) +
+  geom_histogram(mapping = aes(x = critical_trials,  y = rt))
+
+subject_accuracy = pilot_data   %>% 
+  group_by(subject)  %>% 
+  summarise(mean_accuracy = mean(accuracy)) 
+
+subject_rt = pilot_data   %>% 
+  group_by(subject)  %>% 
+  filter(typeoftrial == "conditons")  %>% 
+  summarise(mean_rt = mean(rt))
+
+ggplot(data = pilot_data) +
+  geom_bar(mapping = aes(x = IV,  y = rt))
+
+#Describe pattern 
+```
+
+#Inferential Statistics 
+```{r}
+
+```
+

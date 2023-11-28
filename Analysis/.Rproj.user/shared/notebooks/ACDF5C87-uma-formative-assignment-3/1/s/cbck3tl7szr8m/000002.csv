@@ -1,7 +1,0 @@
-"0","```r
-subject_accuracy = data %>%  
-  group_by(subject, prime_condition)   %>%  
-  summarize(mean_accuracy = mean(accuracy))
-```"
-"1","`summarise()` has grouped output by 'subject'. You can override using the `.groups` argument.
-"
