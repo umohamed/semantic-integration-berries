@@ -13,6 +13,7 @@ install.packages("see")
 install.packages("patchwork")
 install.packages("dplyr") 
 install.packages("tidyr")
+
 ```
 # Load Packages
 ```{r}
@@ -23,6 +24,7 @@ library(see)
 library(patchwork)
 library(dplyr)
 library(tidyr)
+library(lme4)
 ```
 
 
@@ -40,12 +42,14 @@ pilot_data = read.csv("sona_data_2.csv") %>%
   mutate(rt = as.numeric(rt),
          relatedness = as.factor(relatedness),
          type = as.factor(type),
+         cooccurrence = as.factor(cooccurrence),
          revised_correct = as.numeric(revised_correct))
 ```
 
 ```{r}
 nrow(pilot_data)
 levels(pilot_data$relatedness)
+levels(pilot_data$cooccurrence)
 ```
 
 # Basic Descriptives
@@ -89,7 +93,7 @@ low_acc_IDs = subject_attention_accuracy %>%
 # Priming
 ```{r}
 priming_data = pilot_data %>% filter(typeoftrial == "target") %>%
-  select(ID, rt, relatedness, prime, response, type, cooccurence, correct, block_number, target, correct_key) %>%
+  select(ID, rt, relatedness, prime, response, type, cooccurrence, correct, block_number, target, correct_key) %>%
   filter(!is.na(rt), rt > 250, rt < 1500, correct == "TRUE", block_number == 1) %>%
   filter(relatedness %in% c("related", "unrelated") & cooccurrence %in% c("novel", "preexisting")) %>%
   filter(!ID %in% low_acc_IDs)
@@ -109,7 +113,6 @@ priming_data %>%
   theme_bw()+
   scale_fill_grey()
 
-## WILL NOT PLOT UNTIL COOCCURENCE IS IN THE FILE 
 ```
 
 # Association
@@ -171,7 +174,7 @@ mean(association_type_occurrence$shared)
 # Linear Model Analysis
 ```{r}
 rt_model = lmer(data = priming_data,
-                rt ~ relatedness*type + (1|ID))
+                rt ~ relatedness*cooccurrence + (1|ID))
 summary(rt_model)
 ```
 

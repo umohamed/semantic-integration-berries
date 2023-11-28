@@ -1,26 +1,26 @@
 {
-    "id": "E2659C54",
+    "id": "F4190B9F",
     "path": "~/Library/CloudStorage/OneDrive-BowdoinCollege/Desktop/PSYC2740/berries /semantic-integration-berries/Analysis/analysis_berries.Rmd",
     "project_path": "analysis_berries.Rmd",
     "type": "r_markdown",
-    "hash": "1279857281",
+    "hash": "381751046",
     "contents": "",
     "dirty": false,
-    "created": 1701184044272.0,
+    "created": 1701190845987.0,
     "source_on_save": false,
-    "relative_order": 1,
+    "relative_order": 7,
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "105,33",
-        "scrollLine": "95"
+        "cursorPosition": "210,29",
+        "scrollLine": "205"
     },
     "folds": "",
-    "lastKnownWriteTime": 1701189602,
+    "lastKnownWriteTime": 1701190982,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1701189602666,
+    "last_content_update": 1701190982415,
     "read_only": false,
     "read_only_alternatives": []
 }
