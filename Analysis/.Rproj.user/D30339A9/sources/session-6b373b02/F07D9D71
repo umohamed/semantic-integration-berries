@@ -12,13 +12,13 @@
     "properties": {
         "expression": "pilot_data",
         "caption": "pilot_data",
-        "totalObservations": "16070",
-        "displayedObservations": "16070",
-        "variables": "44",
-        "cacheKey": "8A7FF881",
+        "totalObservations": "5204",
+        "displayedObservations": "5204",
+        "variables": "45",
+        "cacheKey": "64ED834D",
         "object": "pilot_data",
         "environment": "",
-        "contentUrl": "grid_resource/gridviewer.html?env=&obj=pilot_data&cache_key=8A7FF881&max_display_columns=50",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=pilot_data&cache_key=64ED834D&max_display_columns=50",
         "preview": "0",
         "source_window_id": "",
         "Source": "Source"
