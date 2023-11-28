@@ -176,3 +176,46 @@ summary(rt_model)
 ```
 
 
+#Inspect Data 
+```{r}
+nrow(pilot_data)
+ncol(pilot_data)
+pilot_data  %>% pull(subject)  %>%  unique() 
+#how mnay trials 
+independent_variables = pilot_data   %>% 
+  select()
+dependent_variables = pilot_data   %>% 
+  select()
+#IV levels? 
+
+
+```
+
+#Basic Descriptives 
+```{r}
+mean_accuracy_stdev = pilot_data   %>% 
+  summarise(mean_accuracy = mean(accuracy), mean_sd = mean(sd))
+
+ggplot(data = pilot_data) +
+  geom_histogram(mapping = aes(x = critical_trials,  y = rt))
+
+subject_accuracy = pilot_data   %>% 
+  group_by(subject)  %>% 
+  summarise(mean_accuracy = mean(accuracy)) 
+
+subject_rt = pilot_data   %>% 
+  group_by(subject)  %>% 
+  filter(typeoftrial == "conditons")  %>% 
+  summarise(mean_rt = mean(rt))
+
+ggplot(data = pilot_data) +
+  geom_bar(mapping = aes(x = IV,  y = rt))
+
+#Describe pattern 
+```
+
+#Inferential Statistics 
+```{r}
+
+```
+
