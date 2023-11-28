@@ -93,6 +93,8 @@ priming_data = pilot_data %>% filter(typeoftrial == "target") %>%
   filter(!is.na(rt), rt > 250, rt < 1500, correct == "TRUE", block_number == 1) %>%
   filter(relatedness %in% c("related", "unrelated") & type %in% c("direct", "novel")) %>%
   filter(!ID %in% low_acc_IDs)
+
+## CHANGE TYPE TO COOCCURENCE (NOVEL AND PREEXISTING)
 ```
 
 # Plot 
@@ -101,54 +103,76 @@ priming_data %>%
   group_by(type, relatedness) %>%
   summarize(mean_rt = mean(rt)) %>%
   ggplot() +
-  geom_col(mapping = aes(x= type, y = mean_rt,
+  geom_col(mapping = aes(x= coocurrence, y = mean_rt,
                          group = relatedness, fill = relatedness),
            position = "dodge")+
   theme_bw()+
   scale_fill_grey()
+
+## WILL NOT PLOT UNTIL COOCCURENCE IS IN THE FILE 
 ```
 
-
-#Inspect Data 
+# Association
 ```{r}
-nrow(pilot_data)
-ncol(pilot_data)
-pilot_data  %>% pull(subject)  %>%  unique() 
-#how mnay trials 
-independent_variables = pilot_data   %>% 
-  select()
-dependent_variables = pilot_data   %>% 
-  select()
-#IV levels? 
+scoring = read_csv("association_scoring.csv")%>%
+  arrange(cue, response)
 
+association_trials = pilot_data %>%
+  filter(typeoftrial == "association") %>%
+  select(ID, revised_response, cue) %>%
+  rename(response = "revised_response") %>%
+  mutate(response= tolower(response)) %>%
+  left_join(scoring)
 
+congruence_trials = association_trials %>%
+  filter(!is.na(congruence)) %>%
+  filter(congruence %in% c("congruent", "incongruent")) %>%
+  filter(type_of_association %in% c("direct", "shared"))
+
+## NEED TO WORK AROUND THE MIPP AND GECK RESPONSES SINCE THEY AREN'T ASSOCIATED WITH A TRIAD
+
+congruence_trials = association_trials %>%
+  filter(!is.na(congruence)) %>%
+  filter(congruence %in% c("congruent", "incongruent")) %>%
+  filter(type_of_association %in% c("direct", "shared"))
+
+congruence_counts = congruence_trials %>%
+  group_by(ID, cue_type, congruence, type_of_association) %>%
+  count() %>%
+  group_by(ID, cue_type) %>%
+  mutate(proportion = n / sum(n))
+
+congruence_counts %>%
+  filter(congruence == "congruent") %>%
+  ungroup()%>%
+  summarise(mean_prop = mean(proportion)) 
+
+wide_counts = congruence_counts %>%
+  select(ID, cue_type, congruence, type_of_association, proportion) %>%
+  pivot_wider(names_from = congruence, values_from = proportion) %>%
+  mutate(incongruent = ifelse(is.na(incongruent), 0, incongruent),
+         congruent = ifelse(is.na(congruent), 0, congruent)) %>%
+  mutate(prop = congruent - incongruent)
+
+mean(wide_counts$prop)
+
+## counts by type of association 
+
+association_type_occurrence = wide_counts %>%
+  select(ID, cue_type, type_of_association, prop) %>%
+  pivot_wider(names_from = type_of_association, values_from = prop) %>%
+  mutate(shared = ifelse(is.na(shared), 0, shared),
+         direct = ifelse(is.na(direct), 0, direct))
+
+mean(association_type_occurrence$direct)
+mean(association_type_occurrence$shared)
 ```
 
-#Basic Descriptives 
+# Linear Model Analysis
 ```{r}
-mean_accuracy_stdev = pilot_data   %>% 
-  summarise(mean_accuracy = mean(accuracy), mean_sd = mean(sd))
-
-ggplot(data = pilot_data) +
-  geom_histogram(mapping = aes(x = critical_trials,  y = rt))
-
-subject_accuracy = pilot_data   %>% 
-  group_by(subject)  %>% 
-  summarise(mean_accuracy = mean(accuracy)) 
-
-subject_rt = pilot_data   %>% 
-  group_by(subject)  %>% 
-  filter(typeoftrial == "conditons")  %>% 
-  summarise(mean_rt = mean(rt))
-
-ggplot(data = pilot_data) +
-  geom_bar(mapping = aes(x = IV,  y = rt))
-
-#Describe pattern 
+rt_model = lmer(data = priming_data,
+                rt ~ relatedness*type + (1|ID))
+summary(rt_model)
 ```
 
-#Inferential Statistics 
-```{r}
-
-```
 
