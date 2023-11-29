@@ -1,0 +1,46 @@
+"0","```r
+library(lmerTest)
+subject_level_model = lmer(data = plot_data, accuracy ~ condition + (1|subject)) 
+summary(subject_level_model)
+```"
+"1","Linear mixed model fit by REML. t-tests use Satterthwaite's method ['lmerModLmerTest']
+Formula: accuracy ~ condition + (1 | subject)
+   Data: plot_data
+
+REML criterion at convergence: -135.9
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-1.8160 -0.7098 -0.1643  0.6417  2.2202 
+
+Random effects:
+ Groups   Name        Variance Std.Dev.
+ subject  (Intercept) 0.01414  0.1189  
+ Residual             0.01370  0.1170  
+Number of obs: 148, groups:  subject, 37
+
+Fixed effects:
+                        Estimate Std. Error         df t value Pr(>|t|)    
+(Intercept)             0.262703   0.027432  81.171844   9.576 5.66e-15 ***
+conditionphonological   0.090811   0.027213 108.000000   3.337  0.00116 ** 
+conditionsemantic      -0.040000   0.027213 108.000000  -1.470  0.14451    
+conditionunrelated     -0.007568   0.027213 108.000000  -0.278  0.78148    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Correlation of Fixed Effects:
+            (Intr) cndtnp cndtns
+cndtnphnlgc -0.496              
+condtnsmntc -0.496  0.500       
+condtnnrltd -0.496  0.500  0.500
+"
+"0","```r
+subject_level_model_2 = aov(data = plot_data, accuracy ~ condition + (1|subject)) 
+summary(subject_level_model_2)
+```"
+"1","             Df Sum Sq Mean Sq F value  Pr(>F)   
+condition     3  0.349 0.11638    4.18 0.00716 **
+Residuals   144  4.009 0.02784                   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+"

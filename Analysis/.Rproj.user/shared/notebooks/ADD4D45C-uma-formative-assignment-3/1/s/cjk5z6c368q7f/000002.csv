@@ -1,0 +1,5 @@
+"0","```r
+library(performance)
+check_model(subject_level_model)
+
+```"

@@ -1,0 +1,5 @@
+"0","```r
+ plot_data <- subject_accuracy_wide %>%
+  pivot_longer(cols = c(semantic, unrelated, both, phonological), names_to = \"condition\", values_to = \"accuracy\")
+print(plot_data)
+```"
