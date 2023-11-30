@@ -19,13 +19,14 @@ library(lme4)
 #Import Data 
 ```{r}
 #prolific_data = read.csv("")
-#sona_data = read.csv("")
+sona_data_1 = read.csv("sona_data_1.csv")
+sona_data_2 = read.csv("sona_data_2.csv")
 ```
 
 # Import data 
 ```{r}
 library(dplyr)
-pilot_data = read.csv("sona_data_2.csv") %>%
+final_data = sona_data_1 %>%
   mutate(rt = as.numeric(rt),
          relatedness = as.factor(relatedness),
          type = as.factor(type),
@@ -35,16 +36,16 @@ pilot_data = read.csv("sona_data_2.csv") %>%
 
 #Inspect Data 
 ```{r}
-nrow(pilot_data)
-ncol(pilot_data)
-pilot_data %>% #small dataset currently 
+nrow(final_data)
+ncol(final_data)
+final_data %>%
   pull(ID) %>% 
   unique() %>%
   length()
-pilot_data %>% filter(typeoftrial == "target") %>% group_by(ID) %>% count()
+final_data %>% filter(typeoftrial == "target") %>% group_by(ID) %>% count()
 #IV: cooccurrence and relatedness
 #DV: rt and revised_correct
-cleaned_data = pilot_data %>%
+cleaned_data = final_data %>%
    filter(relatedness != "") %>%
    filter(cooccurrence != "")
 levels(cleaned_data$relatedness)
@@ -53,27 +54,27 @@ levels(cleaned_data$cooccurrence)
 
 #Basic Descriptives 
 ```{r}
-pilot_data %>%
+final_data %>%
   filter(typeoftrial == "attention")  %>% 
   summarise(mean_accuracy = mean(revised_correct), mean_sd = sd(revised_correct))
 
-target_data = pilot_data %>%
+target_data = final_data %>%
   filter(typeoftrial == "target") 
 ggplot(data = target_data) +
   geom_histogram(mapping = aes(x = rt))
 
-target_rt = pilot_data   %>% 
+target_rt = final_data   %>% 
   group_by(ID)  %>% 
   filter(typeoftrial == "target")  %>% 
   summarise(mean_rt = mean(rt))
 
 #revised_correct for target showing NA when trying to get mean accuracy and rt 
-subject_accuracy = pilot_data   %>% 
+subject_accuracy = final_data   %>% 
   group_by(ID)  %>% 
   filter(typeoftrial == "attention")  %>% 
   summarise(mean_accuracy = mean(revised_correct))
 
-subject_rt = pilot_data   %>% 
+subject_rt = final_data   %>% 
   group_by(ID,typeoftrial )  %>% 
   filter(typeoftrial == "attention" )  %>% 
   summarise(mean_rt = mean(rt))
@@ -103,7 +104,7 @@ car :: Anova(rt_model)
 # Attention
 
 ```{r}
-attention_trials = pilot_data %>% filter(typeoftrial == "attention") %>%
+attention_trials = final_data %>% filter(typeoftrial == "attention") %>%
   select(ID, revised_response, novel1, novel2, novel3, revised_correct)
 
 ## Mean
@@ -124,7 +125,7 @@ low_acc_IDs = subject_attention_accuracy %>%
 
 # Priming
 ```{r}
-priming_data = pilot_data %>% filter(typeoftrial == "target") %>%
+priming_data = final_data %>% filter(typeoftrial == "target") %>%
   select(ID, rt, relatedness, prime, response, type, cooccurrence, correct, block_number, target, correct_key) %>%
   filter(!is.na(rt), rt > 250, rt < 1500, correct == "TRUE", block_number == 1) %>%
   filter(relatedness %in% c("related", "unrelated") & cooccurrence %in% c("novel", "preexisting")) %>%
@@ -145,60 +146,4 @@ priming_data %>%
   theme_bw()+
   scale_fill_grey()
 
-```
-
-# Association
-```{r}
-scoring = read_csv("association_scoring.csv")%>%
-  arrange(cue, response)
-
-association_trials = pilot_data %>%
-  filter(typeoftrial == "association") %>%
-  select(ID, revised_response, cue) %>%
-  rename(response = "revised_response") %>%
-  mutate(response= tolower(response)) %>%
-  left_join(scoring)
-
-congruence_trials = association_trials %>%
-  filter(!is.na(congruence)) %>%
-  filter(congruence %in% c("congruent", "incongruent")) %>%
-  filter(type_of_association %in% c("direct", "shared"))
-
-## NEED TO WORK AROUND THE MIPP AND GECK RESPONSES SINCE THEY AREN'T ASSOCIATED WITH A TRIAD
-
-congruence_trials = association_trials %>%
-  filter(!is.na(congruence)) %>%
-  filter(congruence %in% c("congruent", "incongruent")) %>%
-  filter(type_of_association %in% c("direct", "shared"))
-
-congruence_counts = congruence_trials %>%
-  group_by(ID, cue_type, congruence, type_of_association) %>%
-  count() %>%
-  group_by(ID, cue_type) %>%
-  mutate(proportion = n / sum(n))
-
-congruence_counts %>%
-  filter(congruence == "congruent") %>%
-  ungroup()%>%
-  summarise(mean_prop = mean(proportion)) 
-
-wide_counts = congruence_counts %>%
-  select(ID, cue_type, congruence, type_of_association, proportion) %>%
-  pivot_wider(names_from = congruence, values_from = proportion) %>%
-  mutate(incongruent = ifelse(is.na(incongruent), 0, incongruent),
-         congruent = ifelse(is.na(congruent), 0, congruent)) %>%
-  mutate(prop = congruent - incongruent)
-
-mean(wide_counts$prop)
-
-## counts by type of association 
-
-association_type_occurrence = wide_counts %>%
-  select(ID, cue_type, type_of_association, prop) %>%
-  pivot_wider(names_from = type_of_association, values_from = prop) %>%
-  mutate(shared = ifelse(is.na(shared), 0, shared),
-         direct = ifelse(is.na(direct), 0, direct))
-
-mean(association_type_occurrence$direct)
-mean(association_type_occurrence$shared)
 ```
