@@ -8,7 +8,7 @@ var practice_stimuli = [
     "target_word": "apple",
     "type": "novel",
     "relatedness": "novel",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 1,
     "image_path": "applehorse.png",
     "correct_key": "A"
@@ -22,7 +22,7 @@ var practice_stimuli = [
     "target_word": "horse",
     "type": "novel",
     "relatedness": "novel",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 3,
     "image_path": "applehorse.png",
     "correct_key": "L"
@@ -36,7 +36,7 @@ var practice_stimuli = [
     "target_word": "horse",
     "type": "novel",
     "relatedness": "novel",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 3,
     "image_path": "applehorse.png",
     "correct_key": "L"
@@ -50,7 +50,7 @@ var practice_stimuli = [
     "target_word": "apple",
     "type": "novel",
     "relatedness": "novel",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 3,
     "image_path": "horseapple.png",
     "correct_key": "L"
@@ -64,7 +64,7 @@ var practice_stimuli = [
     "target_word": "apple",
     "type": "novel",
     "relatedness": "novel",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 1,
     "image_path": "applehorse.png",
     "correct_key": "A"
@@ -78,7 +78,7 @@ var practice_stimuli = [
     "target_word": "horse",
     "type": "novel",
     "relatedness": "novel",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 3,
     "image_path": "applehorse.png",
     "correct_key": "L"
@@ -92,7 +92,7 @@ var practice_stimuli = [
     "target_word": "horse",
     "type": "novel",
     "relatedness": "novel",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 3,
     "image_path": "applehorse.png",
     "correct_key": "L"
@@ -106,7 +106,7 @@ var practice_stimuli = [
     "target_word": "apple",
     "type": "novel",
     "relatedness": "novel",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 3,
     "image_path": "horseapple.png",
     "correct_key": "L"
@@ -122,7 +122,7 @@ var test_stimuli = [
     "target_word": "apple",
     "type": "direct",
     "relatedness": "related",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 1,
     "image_path": "applehorse.png",
     "correct_key": "A"
@@ -136,7 +136,7 @@ var test_stimuli = [
     "target_word": "apple",
     "type": "direct",
     "relatedness": "unrelated",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 1,
     "image_path": "applehorse.png",
     "correct_key": "A"
@@ -150,7 +150,7 @@ var test_stimuli = [
     "target_word": "apple",
     "type": "novel",
     "relatedness": "novel",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 1,
     "image_path": "applehorse.png",
     "correct_key": "A"
@@ -164,7 +164,7 @@ var test_stimuli = [
     "target_word": "apple",
     "type": "novel",
     "relatedness": "novel",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 1,
     "image_path": "applehorse.png",
     "correct_key": "A"
@@ -178,7 +178,7 @@ var test_stimuli = [
     "target_word": "horse",
     "type": "direct",
     "relatedness": "unrelated",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 3,
     "image_path": "applehorse.png",
     "correct_key": "L"
@@ -192,7 +192,7 @@ var test_stimuli = [
     "target_word": "horse",
     "type": "direct",
     "relatedness": "related",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 3,
     "image_path": "applehorse.png",
     "correct_key": "L"
@@ -206,7 +206,7 @@ var test_stimuli = [
     "target_word": "horse",
     "type": "novel",
     "relatedness": "novel",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 3,
     "image_path": "applehorse.png",
     "correct_key": "L"
@@ -220,7 +220,7 @@ var test_stimuli = [
     "target_word": "horse",
     "type": "novel",
     "relatedness": "novel",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 3,
     "image_path": "applehorse.png",
     "correct_key": "L"
@@ -234,7 +234,7 @@ var test_stimuli = [
     "target_word": "apple",
     "type": "direct",
     "relatedness": "related",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 3,
     "image_path": "horseapple.png",
     "correct_key": "L"
@@ -248,7 +248,7 @@ var test_stimuli = [
     "target_word": "apple",
     "type": "direct",
     "relatedness": "unrelated",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 3,
     "image_path": "horseapple.png",
     "correct_key": "L"
@@ -262,7 +262,7 @@ var test_stimuli = [
     "target_word": "apple",
     "type": "novel",
     "relatedness": "novel",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 3,
     "image_path": "horseapple.png",
     "correct_key": "L"
@@ -276,7 +276,7 @@ var test_stimuli = [
     "target_word": "apple",
     "type": "novel",
     "relatedness": "novel",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 3,
     "image_path": "horseapple.png",
     "correct_key": "L"
@@ -290,7 +290,7 @@ var test_stimuli = [
     "target_word": "horse",
     "type": "direct",
     "relatedness": "unrelated",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 1,
     "image_path": "horseapple.png",
     "correct_key": "A"
@@ -304,7 +304,7 @@ var test_stimuli = [
     "target_word": "horse",
     "type": "direct",
     "relatedness": "related",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 1,
     "image_path": "horseapple.png",
     "correct_key": "A"
@@ -318,7 +318,7 @@ var test_stimuli = [
     "target_word": "horse",
     "type": "novel",
     "relatedness": "novel",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 1,
     "image_path": "horseapple.png",
     "correct_key": "A"
@@ -332,7 +332,7 @@ var test_stimuli = [
     "target_word": "horse",
     "type": "novel",
     "relatedness": "novel",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 1,
     "image_path": "horseapple.png",
     "correct_key": "A"
@@ -346,7 +346,7 @@ var test_stimuli = [
     "target_word": "apple",
     "type": "direct",
     "relatedness": "related",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 1,
     "image_path": "applehorse.png",
     "correct_key": "A"
@@ -360,7 +360,7 @@ var test_stimuli = [
     "target_word": "apple",
     "type": "direct",
     "relatedness": "unrelated",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 1,
     "image_path": "applehorse.png",
     "correct_key": "A"
@@ -374,7 +374,7 @@ var test_stimuli = [
     "target_word": "apple",
     "type": "novel",
     "relatedness": "novel",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 1,
     "image_path": "applehorse.png",
     "correct_key": "A"
@@ -388,7 +388,7 @@ var test_stimuli = [
     "target_word": "apple",
     "type": "novel",
     "relatedness": "novel",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 1,
     "image_path": "applehorse.png",
     "correct_key": "A"
@@ -402,7 +402,7 @@ var test_stimuli = [
     "target_word": "horse",
     "type": "direct",
     "relatedness": "unrelated",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 3,
     "image_path": "applehorse.png",
     "correct_key": "L"
@@ -416,7 +416,7 @@ var test_stimuli = [
     "target_word": "horse",
     "type": "direct",
     "relatedness": "related",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 3,
     "image_path": "applehorse.png",
     "correct_key": "L"
@@ -430,7 +430,7 @@ var test_stimuli = [
     "target_word": "horse",
     "type": "novel",
     "relatedness": "novel",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 3,
     "image_path": "applehorse.png",
     "correct_key": "L"
@@ -444,7 +444,7 @@ var test_stimuli = [
     "target_word": "horse",
     "type": "novel",
     "relatedness": "novel",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 3,
     "image_path": "applehorse.png",
     "correct_key": "L"
@@ -458,7 +458,7 @@ var test_stimuli = [
     "target_word": "apple",
     "type": "direct",
     "relatedness": "related",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 3,
     "image_path": "horseapple.png",
     "correct_key": "L"
@@ -472,7 +472,7 @@ var test_stimuli = [
     "target_word": "apple",
     "type": "direct",
     "relatedness": "unrelated",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 3,
     "image_path": "horseapple.png",
     "correct_key": "L"
@@ -486,7 +486,7 @@ var test_stimuli = [
     "target_word": "apple",
     "type": "novel",
     "relatedness": "novel",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 3,
     "image_path": "horseapple.png",
     "correct_key": "L"
@@ -500,7 +500,7 @@ var test_stimuli = [
     "target_word": "apple",
     "type": "novel",
     "relatedness": "novel",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 3,
     "image_path": "horseapple.png",
     "correct_key": "L"
@@ -514,7 +514,7 @@ var test_stimuli = [
     "target_word": "horse",
     "type": "direct",
     "relatedness": "unrelated",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 1,
     "image_path": "horseapple.png",
     "correct_key": "A"
@@ -528,7 +528,7 @@ var test_stimuli = [
     "target_word": "horse",
     "type": "direct",
     "relatedness": "related",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 1,
     "image_path": "horseapple.png",
     "correct_key": "A"
@@ -542,7 +542,7 @@ var test_stimuli = [
     "target_word": "horse",
     "type": "novel",
     "relatedness": "novel",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 1,
     "image_path": "horseapple.png",
     "correct_key": "A"
@@ -556,7 +556,7 @@ var test_stimuli = [
     "target_word": "horse",
     "type": "novel",
     "relatedness": "novel",
-    "cooccurence": "novel",
+    "cooccurrence": "novel",
     "correct_response": 1,
     "image_path": "horseapple.png",
     "correct_key": "A"
@@ -570,7 +570,7 @@ var test_stimuli = [
     "target_word": "apple",
     "type": "direct",
     "relatedness": "related",
-    "cooccurence": "preexisting",
+    "cooccurrence": "preexisting",
     "correct_response": 1,
     "image_path": "applehorse.png",
     "correct_key": "A"
@@ -584,7 +584,7 @@ var test_stimuli = [
     "target_word": "apple",
     "type": "direct",
     "relatedness": "related",
-    "cooccurence": "preexisting",
+    "cooccurrence": "preexisting",
     "correct_response": 1,
     "image_path": "applehorse.png",
     "correct_key": "A"
@@ -598,7 +598,7 @@ var test_stimuli = [
     "target_word": "apple",
     "type": "direct",
     "relatedness": "related",
-    "cooccurence": "preexisting",
+    "cooccurrence": "preexisting",
     "correct_response": 1,
     "image_path": "applehorse.png",
     "correct_key": "A"
@@ -612,7 +612,7 @@ var test_stimuli = [
     "target_word": "apple",
     "type": "direct",
     "relatedness": "related",
-    "cooccurence": "preexisting",
+    "cooccurrence": "preexisting",
     "correct_response": 1,
     "image_path": "applehorse.png",
     "correct_key": "A"
@@ -626,7 +626,7 @@ var test_stimuli = [
     "target_word": "apple",
     "type": "direct",
     "relatedness": "related",
-    "cooccurence": "preexisting",
+    "cooccurrence": "preexisting",
     "correct_response": 3,
     "image_path": "horseapple.png",
     "correct_key": "L"
@@ -640,7 +640,7 @@ var test_stimuli = [
     "target_word": "apple",
     "type": "direct",
     "relatedness": "related",
-    "cooccurence": "preexisting",
+    "cooccurrence": "preexisting",
     "correct_response": 3,
     "image_path": "horseapple.png",
     "correct_key": "L"
@@ -654,7 +654,7 @@ var test_stimuli = [
     "target_word": "apple",
     "type": "direct",
     "relatedness": "related",
-    "cooccurence": "preexisting",
+    "cooccurrence": "preexisting",
     "correct_response": 3,
     "image_path": "horseapple.png",
     "correct_key": "L"
@@ -668,7 +668,7 @@ var test_stimuli = [
     "target_word": "apple",
     "type": "direct",
     "relatedness": "related",
-    "cooccurence": "preexisting",
+    "cooccurrence": "preexisting",
     "correct_response": 3,
     "image_path": "horseapple.png",
     "correct_key": "L"
@@ -682,7 +682,7 @@ var test_stimuli = [
     "target_word": "horse",
     "type": "direct",
     "relatedness": "related",
-    "cooccurence": "preexisting",
+    "cooccurrence": "preexisting",
     "correct_response": 3,
     "image_path": "applehorse.png",
     "correct_key": "L"
@@ -696,7 +696,7 @@ var test_stimuli = [
     "target_word": "horse",
     "type": "direct",
     "relatedness": "related",
-    "cooccurence": "preexisting",
+    "cooccurrence": "preexisting",
     "correct_response": 3,
     "image_path": "applehorse.png",
     "correct_key": "L"
@@ -710,7 +710,7 @@ var test_stimuli = [
     "target_word": "horse",
     "type": "direct",
     "relatedness": "related",
-    "cooccurence": "preexisting",
+    "cooccurrence": "preexisting",
     "correct_response": 3,
     "image_path": "applehorse.png",
     "correct_key": "L"
@@ -724,7 +724,7 @@ var test_stimuli = [
     "target_word": "horse",
     "type": "direct",
     "relatedness": "related",
-    "cooccurence": "preexisting",
+    "cooccurrence": "preexisting",
     "correct_response": 3,
     "image_path": "applehorse.png",
     "correct_key": "L"
@@ -738,7 +738,7 @@ var test_stimuli = [
     "target_word": "horse",
     "type": "direct",
     "relatedness": "related",
-    "cooccurence": "preexisting",
+    "cooccurrence": "preexisting",
     "correct_response": 1,
     "image_path": "horseapple.png",
     "correct_key": "A"
@@ -752,7 +752,7 @@ var test_stimuli = [
     "target_word": "horse",
     "type": "direct",
     "relatedness": "related",
-    "cooccurence": "preexisting",
+    "cooccurrence": "preexisting",
     "correct_response": 1,
     "image_path": "horseapple.png",
     "correct_key": "A"
@@ -766,7 +766,7 @@ var test_stimuli = [
     "target_word": "horse",
     "type": "direct",
     "relatedness": "related",
-    "cooccurence": "preexisting",
+    "cooccurrence": "preexisting",
     "correct_response": 1,
     "image_path": "horseapple.png",
     "correct_key": "A"
@@ -780,7 +780,7 @@ var test_stimuli = [
     "target_word": "horse",
     "type": "direct",
     "relatedness": "related",
-    "cooccurence": "preexisting",
+    "cooccurrence": "preexisting",
     "correct_response": 1,
     "image_path": "horseapple.png",
     "correct_key": "A"
@@ -794,7 +794,7 @@ var test_stimuli = [
     "target_word": "apple",
     "type": "direct",
     "relatedness": "unrelated",
-    "cooccurence": "preexisting",
+    "cooccurrence": "preexisting",
     "correct_response": 1,
     "image_path": "applehorse.png",
     "correct_key": "A"
@@ -808,7 +808,7 @@ var test_stimuli = [
     "target_word": "apple",
     "type": "direct",
     "relatedness": "unrelated",
-    "cooccurence": "preexisting",
+    "cooccurrence": "preexisting",
     "correct_response": 1,
     "image_path": "applehorse.png",
     "correct_key": "A"
@@ -822,7 +822,7 @@ var test_stimuli = [
     "target_word": "apple",
     "type": "direct",
     "relatedness": "unrelated",
-    "cooccurence": "preexisting",
+    "cooccurrence": "preexisting",
     "correct_response": 1,
     "image_path": "applehorse.png",
     "correct_key": "A"
@@ -836,7 +836,7 @@ var test_stimuli = [
     "target_word": "apple",
     "type": "direct",
     "relatedness": "unrelated",
-    "cooccurence": "preexisting",
+    "cooccurrence": "preexisting",
     "correct_response": 1,
     "image_path": "applehorse.png",
     "correct_key": "A"
@@ -850,7 +850,7 @@ var test_stimuli = [
     "target_word": "apple",
     "type": "direct",
     "relatedness": "unrelated",
-    "cooccurence": "preexisting",
+    "cooccurrence": "preexisting",
     "correct_response": 3,
     "image_path": "horseapple.png",
     "correct_key": "L"
@@ -864,7 +864,7 @@ var test_stimuli = [
     "target_word": "apple",
     "type": "direct",
     "relatedness": "unrelated",
-    "cooccurence": "preexisting",
+    "cooccurrence": "preexisting",
     "correct_response": 3,
     "image_path": "horseapple.png",
     "correct_key": "L"
@@ -878,7 +878,7 @@ var test_stimuli = [
     "target_word": "apple",
     "type": "direct",
     "relatedness": "unrelated",
-    "cooccurence": "preexisting",
+    "cooccurrence": "preexisting",
     "correct_response": 3,
     "image_path": "horseapple.png",
     "correct_key": "L"
@@ -892,7 +892,7 @@ var test_stimuli = [
     "target_word": "apple",
     "type": "direct",
     "relatedness": "unrelated",
-    "cooccurence": "preexisting",
+    "cooccurrence": "preexisting",
     "correct_response": 3,
     "image_path": "horseapple.png",
     "correct_key": "L"
@@ -906,7 +906,7 @@ var test_stimuli = [
     "target_word": "horse",
     "type": "direct",
     "relatedness": "unrelated",
-    "cooccurence": "preexisting",
+    "cooccurrence": "preexisting",
     "correct_response": 3,
     "image_path": "applehorse.png",
     "correct_key": "L"
@@ -920,7 +920,7 @@ var test_stimuli = [
     "target_word": "horse",
     "type": "direct",
     "relatedness": "unrelated",
-    "cooccurence": "preexisting",
+    "cooccurrence": "preexisting",
     "correct_response": 3,
     "image_path": "applehorse.png",
     "correct_key": "L"
@@ -934,7 +934,7 @@ var test_stimuli = [
     "target_word": "horse",
     "type": "direct",
     "relatedness": "unrelated",
-    "cooccurence": "preexisting",
+    "cooccurrence": "preexisting",
     "correct_response": 3,
     "image_path": "applehorse.png",
     "correct_key": "L"
@@ -948,7 +948,7 @@ var test_stimuli = [
     "target_word": "horse",
     "type": "direct",
     "relatedness": "unrelated",
-    "cooccurence": "preexisting",
+    "cooccurrence": "preexisting",
     "correct_response": 3,
     "image_path": "applehorse.png",
     "correct_key": "L"
@@ -962,7 +962,7 @@ var test_stimuli = [
     "target_word": "horse",
     "type": "direct",
     "relatedness": "unrelated",
-    "cooccurence": "preexisting",
+    "cooccurrence": "preexisting",
     "correct_response": 1,
     "image_path": "horseapple.png",
     "correct_key": "A"
@@ -976,7 +976,7 @@ var test_stimuli = [
     "target_word": "horse",
     "type": "direct",
     "relatedness": "unrelated",
-    "cooccurence": "preexisting",
+    "cooccurrence": "preexisting",
     "correct_response": 1,
     "image_path": "horseapple.png",
     "correct_key": "A"
@@ -990,7 +990,7 @@ var test_stimuli = [
     "target_word": "horse",
     "type": "direct",
     "relatedness": "unrelated",
-    "cooccurence": "preexisting",
+    "cooccurrence": "preexisting",
     "correct_response": 1,
     "image_path": "horseapple.png",
     "correct_key": "A"
@@ -1004,7 +1004,7 @@ var test_stimuli = [
     "target_word": "horse",
     "type": "direct",
     "relatedness": "unrelated",
-    "cooccurence": "preexisting",
+    "cooccurrence": "preexisting",
     "correct_response": 1,
     "image_path": "horseapple.png",
     "correct_key": "A"
