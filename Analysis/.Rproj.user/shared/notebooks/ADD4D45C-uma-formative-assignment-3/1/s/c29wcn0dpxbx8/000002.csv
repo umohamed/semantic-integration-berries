@@ -1,4 +1,0 @@
-"0","```r
- subject_accuracy_wide <- subject_accuracy %>%
-   pivot_wider(names_from = prime_condition, values_from = mean_accuracy)
-```"

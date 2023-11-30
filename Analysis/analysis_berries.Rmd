@@ -85,6 +85,7 @@ ggplot(data = cleaned_data, aes(x = cooccurrence, y = rt, fill = relatedness)) +
        y = "Reaction Time",
        fill = "Relatedness")
 #In our 7 person study, people had quicker responses when the prime word was a related word that was trained with our target words (apple/horse)like dodish and represents a new co-occurence association. In the pre-existing co-occurence condition, surprisingly related prime words like caramelizing did not show faster reaction times compared to unrelated prime words like narrow. 
+# Note that novel relatedness with novel cooccurrence will be removed because that is the practice condition. 
 ```
 
 #Inferential Statistics 

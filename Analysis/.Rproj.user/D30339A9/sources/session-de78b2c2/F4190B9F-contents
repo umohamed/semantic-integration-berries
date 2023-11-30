@@ -3,18 +3,6 @@ title: "Semantic Integration Berries"
 output: html_document
 date: "2023-11-21"
 ---
-
-#install and load packages 
-```{r}
-install.packages("tidyverse")
-install.packages("emmeans")
-install.packages("performance")
-install.packages("see")
-install.packages("patchwork")
-install.packages("dplyr") 
-install.packages("tidyr")
-
-```
 # Load Packages
 ```{r}
 library(tidyverse)
@@ -32,7 +20,6 @@ library(lme4)
 ```{r}
 #prolific_data = read.csv("")
 #sona_data = read.csv("")
-
 ```
 
 # Import data 
@@ -46,27 +33,72 @@ pilot_data = read.csv("sona_data_2.csv") %>%
          revised_correct = as.numeric(revised_correct))
 ```
 
+#Inspect Data 
 ```{r}
 nrow(pilot_data)
-levels(pilot_data$relatedness)
-levels(pilot_data$cooccurrence)
-```
-
-# Basic Descriptives
-```{r}
+ncol(pilot_data)
+pilot_data %>% #small dataset currently 
+  pull(ID) %>% 
+  unique() %>%
+  length()
 pilot_data %>% filter(typeoftrial == "target") %>% group_by(ID) %>% count()
+#IV: cooccurrence and relatedness
+#DV: rt and revised_correct
+cleaned_data = pilot_data %>%
+   filter(relatedness != "") %>%
+   filter(cooccurrence != "")
+levels(cleaned_data$relatedness)
+levels(cleaned_data$cooccurrence)
 ```
 
+#Basic Descriptives 
 ```{r}
 pilot_data %>%
-  filter(typeoftrial == "target") %>%
-  pull(rt)
+  filter(typeoftrial == "attention")  %>% 
+  summarise(mean_accuracy = mean(revised_correct), mean_sd = sd(revised_correct))
+
+target_data = pilot_data %>%
+  filter(typeoftrial == "target") 
+ggplot(data = target_data) +
+  geom_histogram(mapping = aes(x = rt))
+
+target_rt = pilot_data   %>% 
+  group_by(ID)  %>% 
+  filter(typeoftrial == "target")  %>% 
+  summarise(mean_rt = mean(rt))
+
+#revised_correct for target showing NA when trying to get mean accuracy and rt 
+subject_accuracy = pilot_data   %>% 
+  group_by(ID)  %>% 
+  filter(typeoftrial == "attention")  %>% 
+  summarise(mean_accuracy = mean(revised_correct))
+
+subject_rt = pilot_data   %>% 
+  group_by(ID,typeoftrial )  %>% 
+  filter(typeoftrial == "attention" )  %>% 
+  summarise(mean_rt = mean(rt))
+
+ggplot(data = cleaned_data, aes(x = cooccurrence, y = rt, fill = relatedness)) +
+  geom_col(position = "dodge") +
+  labs(title = "Reaction Time by Cooccurrence and Relatedness",
+       x = "Cooccurrence",
+       y = "Reaction Time",
+       fill = "Relatedness")
+#In our 7 person study, people had quicker responses when the prime word was a related word that was trained with our target words (apple/horse)like dodish and represents a new co-occurence association. In the pre-existing co-occurence condition, surprisingly related prime words like caramelizing did not show faster reaction times compared to unrelated prime words like narrow. 
+# Note that novel relatedness with novel cooccurrence will be removed because that is the practice condition. 
 ```
 
+#Inferential Statistics 
 ```{r}
-pilot_data %>%
-  pull(ID) %>% unique() %>% length()
+#Reseach Q: We will be investigating how closely related a novel co-occurring word is to the target word compared to pre-existing co-occurring related and unrelated words. We are asking if the novel co-occurring words are as integrated into our semantic network as pre-existing related words. 
+
+rt_model = lmer(data = priming_data,
+                rt ~ relatedness*cooccurrence + (1|ID))
+summary(rt_model)
+car :: Anova(rt_model)
 ```
+
+#Following is our analysis 
 
 # Attention
 
@@ -170,55 +202,3 @@ association_type_occurrence = wide_counts %>%
 mean(association_type_occurrence$direct)
 mean(association_type_occurrence$shared)
 ```
-
-# Linear Model Analysis
-```{r}
-rt_model = lmer(data = priming_data,
-                rt ~ relatedness*cooccurrence + (1|ID))
-summary(rt_model)
-```
-
-
-#Inspect Data 
-```{r}
-nrow(pilot_data)
-ncol(pilot_data)
-pilot_data  %>% pull(subject)  %>%  unique() 
-#how mnay trials 
-independent_variables = pilot_data   %>% 
-  select()
-dependent_variables = pilot_data   %>% 
-  select()
-#IV levels? 
-
-
-```
-
-#Basic Descriptives 
-```{r}
-mean_accuracy_stdev = pilot_data   %>% 
-  summarise(mean_accuracy = mean(accuracy), mean_sd = mean(sd))
-
-ggplot(data = pilot_data) +
-  geom_histogram(mapping = aes(x = critical_trials,  y = rt))
-
-subject_accuracy = pilot_data   %>% 
-  group_by(subject)  %>% 
-  summarise(mean_accuracy = mean(accuracy)) 
-
-subject_rt = pilot_data   %>% 
-  group_by(subject)  %>% 
-  filter(typeoftrial == "conditons")  %>% 
-  summarise(mean_rt = mean(rt))
-
-ggplot(data = pilot_data) +
-  geom_bar(mapping = aes(x = IV,  y = rt))
-
-#Describe pattern 
-```
-
-#Inferential Statistics 
-```{r}
-
-```
-
