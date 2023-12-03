@@ -21,6 +21,7 @@ library(lme4)
 #prolific_data = read.csv("")
 sona_data_1 = read.csv("sona_data_1.csv")
 sona_data_2 = read.csv("sona_data_2.csv")
+sona_data_3 = read.csv("sona_data_3.csv")
 sona_data = rbind(sona_data_1, sona_data_2)
 ```
 
