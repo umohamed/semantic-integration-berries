@@ -117,6 +117,7 @@ priming_data = final_data %>% filter(typeoftrial == "target") %>%
 ## CHANGE TYPE TO COOCCURENCE (NOVEL AND PREEXISTING)
 ```
 
+
 # Plot 
 ```{r}
 priming_data %>% 
@@ -139,3 +140,5 @@ rt_model = lmer(data = priming_data,
                 rt ~ relatedness*cooccurrence + (1|ID))
 summary(rt_model)
 car :: Anova(rt_model)
+```
+
