@@ -47,11 +47,7 @@ final_data %>%
 final_data %>% filter(typeoftrial == "target") %>% group_by(ID) %>% count()
 #IV: cooccurrence and relatedness
 #DV: rt and revised_correct
-cleaned_data = final_data %>%
-   filter(relatedness != "") %>%
-   filter(cooccurrence != "")
-levels(cleaned_data$relatedness)
-levels(cleaned_data$cooccurrence)
+
 ```
 
 #Basic Descriptives 
@@ -81,25 +77,10 @@ subject_rt = final_data   %>%
   filter(typeoftrial == "attention" )  %>% 
   summarise(mean_rt = mean(rt))
 
-ggplot(data = cleaned_data, aes(x = cooccurrence, y = rt, fill = relatedness)) +
-  geom_col(position = "dodge") +
-  labs(title = "Reaction Time by Cooccurrence and Relatedness",
-       x = "Cooccurrence",
-       y = "Reaction Time",
-       fill = "Relatedness")
 #In our 7 person study, people had quicker responses when the prime word was a related word that was trained with our target words (apple/horse)like dodish and represents a new co-occurence association. In the pre-existing co-occurence condition, surprisingly related prime words like caramelizing did not show faster reaction times compared to unrelated prime words like narrow. 
 # Note that novel relatedness with novel cooccurrence will be removed because that is the practice condition. 
 ```
 
-#Inferential Statistics 
-```{r}
-#Reseach Q: We will be investigating how closely related a novel co-occurring word is to the target word compared to pre-existing co-occurring related and unrelated words. We are asking if the novel co-occurring words are as integrated into our semantic network as pre-existing related words. 
-
-rt_model = lmer(data = priming_data,
-                rt ~ relatedness*cooccurrence + (1|ID))
-summary(rt_model)
-car :: Anova(rt_model)
-```
 
 #Following is our analysis 
 
@@ -149,3 +130,12 @@ priming_data %>%
   scale_fill_grey()
 
 ```
+
+#Inferential Statistics 
+```{r}
+#Reseach Q: We will be investigating how closely related a novel co-occurring word is to the target word compared to pre-existing co-occurring related and unrelated words. We are asking if the novel co-occurring words are as integrated into our semantic network as pre-existing related words. 
+
+rt_model = lmer(data = priming_data,
+                rt ~ relatedness*cooccurrence + (1|ID))
+summary(rt_model)
+car :: Anova(rt_model)
