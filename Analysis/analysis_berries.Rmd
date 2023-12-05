@@ -145,7 +145,8 @@ priming_data %>%
                 width = 0.25,
                 position = position_dodge(width = 0.9)) +
   theme_bw() +
-  scale_fill_grey()
+  scale_fill_grey()+
+    labs(y = "Reaction Time", x = "Co-occurrence", title = "Reaction Time by Co-occurrence and Relatedness")
 
 ```
 
