@@ -122,15 +122,33 @@ priming_data = final_data %>% filter(typeoftrial == "target") %>%
 ```{r}
 priming_data %>% 
   group_by(cooccurrence, relatedness) %>%
-  summarize(mean_rt = mean(rt)) %>%
+  summarize(mean_rt = mean(rt),
+            sd_rt = sd(rt)) %>%
   ggplot() +
   geom_col(mapping = aes(x= cooccurrence, y = mean_rt,
                          group = relatedness, fill = relatedness),
            position = "dodge")+
   theme_bw()+
   scale_fill_grey()
+```
+
+# Plot with error bars
+```{r}
+priming_data %>%
+  group_by(cooccurrence, relatedness) %>%
+  summarize(mean_rt = mean(rt),
+            sd_rt = sd(rt)) %>%
+  ggplot(aes(x = cooccurrence, y = mean_rt, fill = relatedness)) +
+  geom_col(position = "dodge") +
+  geom_errorbar(aes(ymin = mean_rt - sd_rt,
+                    ymax = mean_rt + sd_rt),
+                width = 0.25,
+                position = position_dodge(width = 0.9)) +
+  theme_bw() +
+  scale_fill_grey()
 
 ```
+
 
 #Inferential Statistics 
 ```{r}
