@@ -160,5 +160,7 @@ rt_model = lmer(data = priming_data,
                 rt ~ relatedness*cooccurrence + (1|ID))
 summary(rt_model)
 car :: Anova(rt_model)
+
+emmeans::emmeans(rt_model, pairwise ~ cooccurrence | relatedness  , adjust="tukey")
 ```
 
