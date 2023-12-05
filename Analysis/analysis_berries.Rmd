@@ -22,13 +22,14 @@ library(lme4)
 sona_data_1 = read.csv("sona_data_1.csv")
 sona_data_2 = read.csv("sona_data_2.csv")
 sona_data_3 = read.csv("sona_data_3.csv")
-sona_data = rbind(sona_data_1, sona_data_2)
+prolific_data_1 = read.csv("prolific_data_1.csv")
+sona_prolific_data = rbind(sona_data_1, sona_data_2, sona_data_3, prolific_data_1)
 ```
 
 # Import data 
 ```{r}
 library(dplyr)
-final_data = sona_data %>%
+final_data = sona_prolific_data %>%
   mutate(rt = as.numeric(rt),
          relatedness = as.factor(relatedness),
          type = as.factor(type),
