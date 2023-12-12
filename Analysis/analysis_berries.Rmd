@@ -23,7 +23,9 @@ sona_data_1 = read.csv("sona_data_1.csv")
 sona_data_2 = read.csv("sona_data_2.csv")
 sona_data_3 = read.csv("sona_data_3.csv")
 prolific_data_1 = read.csv("prolific_data_1.csv")
-sona_prolific_data = rbind(sona_data_1, sona_data_2, sona_data_3, prolific_data_1)
+prolific_data_2 = read.csv("prolific_data_2.csv")
+sona_prolific_data = rbind(sona_data_1, sona_data_2, sona_data_3, 
+                           prolific_data_1, prolific_data_2)
 ```
 
 # Import data 
@@ -48,7 +50,6 @@ final_data %>%
 final_data %>% filter(typeoftrial == "target") %>% group_by(ID) %>% count()
 #IV: cooccurrence and relatedness
 #DV: rt and revised_correct
-
 ```
 
 #Basic Descriptives 
