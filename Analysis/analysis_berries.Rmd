@@ -123,18 +123,13 @@ priming_data = final_data %>% filter(typeoftrial == "target") %>%
 ```
 
 
-# Plot 
+# Prime summary stats
 ```{r}
-priming_data %>% 
+prime_summary_stats = priming_data %>% 
   group_by(cooccurrence, relatedness) %>%
   summarize(mean_rt = mean(rt),
-            sd_rt = sd(rt)) %>%
-  ggplot() +
-  geom_col(mapping = aes(x= cooccurrence, y = mean_rt,
-                         group = relatedness, fill = relatedness),
-           position = "dodge")+
-  theme_bw()+
-  scale_fill_grey()
+            sd_rt = sd(rt))
+
 ```
 
 # Plot with error bars
